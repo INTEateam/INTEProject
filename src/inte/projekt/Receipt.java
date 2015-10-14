@@ -13,6 +13,14 @@ public class Receipt {
         products = new ArrayList<>();
     }
 
+    public void addProduct(Product p){
+        products.add(p);
+    }
+
+    public int getProductCount(){
+        return products.size();
+    }
+
 
 
 
