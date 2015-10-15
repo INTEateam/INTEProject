@@ -23,5 +23,5 @@ public class TestCustomer {
     public void testPersonnrDateValidity(){
         Customer c = new Customer("192001353311","Namn Efternamn", "Gata", "nr", true);
     }
-    
+
 }

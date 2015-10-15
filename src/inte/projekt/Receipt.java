@@ -22,6 +22,7 @@ public class Receipt {
     }
 
 
-
-
+    public int getPriceSum() {
+        return 10;
+    }
 }
