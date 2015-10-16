@@ -18,6 +18,7 @@ public class Customer {
 
     public Customer(String personnr, String name, String adress, String gatunummer, Boolean member){
         setPersonnr(personnr);
+        System.out.println("Personnr: " + personnr + " is " + validChecksum(personnr));
         this.name = name;
         this.adress = adress;
         this.gatunummer = gatunummer;
@@ -37,7 +38,7 @@ public class Customer {
     private void setPersonnr(String personnr){
         if(personnr.length() == 10){
             String datepart = personnr.substring(0,6);
-            if(validDate(datepart,10)){
+            if(validDate(datepart, 10)){
                 this.personnr = personnr;
             }else{
                 throw new IllegalArgumentException("Invalid personnr.");
@@ -94,5 +95,23 @@ public class Customer {
             }
         }
         return true;
+    }
+
+    // Luhn-Algorithm
+    public boolean validChecksum(String personnr) {
+        int s1 = 0, s2 = 0;
+        String reverse = new StringBuffer(personnr).reverse().toString();
+        for(int i = 0; i < reverse.length(); i++){
+            int digit = Character.digit(reverse.charAt(i),10);
+            if(i % 2 == 0){
+                s1 += digit;
+            }else{
+                s2 += 2 * digit;
+                if(digit >= 5){
+                    s2 -= 9;
+                }
+            }
+        }
+        return (s1 + s2) % 10 == 0;
     }
 }
