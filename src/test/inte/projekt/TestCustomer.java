@@ -21,6 +21,27 @@ public class TestCustomer {
         Customer c = new Customer("9001013311","Namn Efternamn", "Gata", "nr", true);
         assertEquals("9001013311",c.getPersonnr());
     }
+
+    @Test (expected = Exception.class)
+    public void testPersonnrDateValidityInvalidDay(){
+        Customer c = new Customer("9503359999","Namn Efternamn","Gate","nr",true);
+    }
+
+    @Test (expected = Exception.class)
+    public void testPersonnrDateValidityInvalidMonth(){
+        Customer c = new Customer("9214259999","Namn Efternamn","Gate","nr",true);
+    }
+
+    @Test
+    public void testPersonnrDateValidityLeapYear(){
+        Customer c = new Customer("8402299999","Namn Efternamn","Gate","nr",true);
+    }
+
+    @Test (expected = Exception.class)
+    public void testPersonnrDateValidityNotLeapYear(){
+        Customer c = new Customer("8302299999","Namn Efternamn","Gate","nr",true);
+    }
+
     /*
     @Test (expected = IllegalArgumentException.class)
     public void testPersonnrMonthValidity(){
