@@ -10,6 +10,7 @@ public class Product {
     BigDecimal price;
     String name;
     String type;
+    
 
     public Product(int id, BigDecimal price, String name, String type){
         this.id = id;
@@ -19,6 +20,8 @@ public class Product {
     }
 
     public BigDecimal getPrice() {
+        
+        
         return price;
     }
 

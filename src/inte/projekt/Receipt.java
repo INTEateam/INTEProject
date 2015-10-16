@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Receipt {
     private List<Product> products;
+   
 
     public Receipt(){
         products = new ArrayList<>();
