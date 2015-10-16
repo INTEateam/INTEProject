@@ -10,7 +10,7 @@ public class Customer {
     String gatunummer;
     Boolean member;
 
-    public Customer(String personnr, String name, String adress, String gatunummer, Boolean member) throws IllegalArgumentException{
+    public Customer(String personnr, String name, String adress, String gatunummer, Boolean member){
         setPersonnr(personnr);
         this.name = name;
         this.adress = adress;
@@ -28,8 +28,9 @@ public class Customer {
         return personnr;
     }
 
-    private void setPersonnr(String personnr){
+    private void setPersonnr(String personnr) throws IllegalArgumentException{
         if(personnr.length() == 10){
+            //String datepart = personnr.substring(0,6);
             this.personnr = personnr;
         }else if(personnr.length() == 12){
             if(personnr.charAt(0) == '1' && personnr.charAt(1) == '9'){
