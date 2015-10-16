@@ -1,6 +1,8 @@
 package test.inte.projekt;
+
 import inte.projekt.Customer;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -20,7 +22,7 @@ public class TestCustomer {
     }
 
     @Test (expected = Exception.class)
-    public void testPersonnrDateValidity(){
+    public void testPersonnrDayValidity(){
         Customer c = new Customer("192001353311","Namn Efternamn", "Gata", "nr", true);
     }
 

@@ -1,5 +1,6 @@
 package inte.projekt;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,24 @@ public class Receipt {
     }
 
 
-    public int getPriceSum() {
-        return 10;
+    public BigDecimal getPriceSum() {
+        BigDecimal sum = new BigDecimal(0);
+        for(Product p : products){
+            sum = sum.add(p.getPrice());
+        }
+        return sum;
+
     }
+
+    public boolean removeProduct(int id){
+        Product pRem = null;
+        for(Product p : products){
+            if(p.getId() == id){
+                pRem = p;
+                break;
+            }
+        }
+        return products.remove(pRem);
+    }
+
 }
