@@ -48,7 +48,7 @@ public class TestDiscount {
     public void testNegativeDiscount(){
         p = new Product(1, new BigDecimal(100), "p1", "p2");        
         d = new Discount(new BigDecimal(-0.2),p);
-        assertTrue(d.discountAmount.compareTo(BigDecimal.ZERO) > 0);
+        assertTrue(d.getDiscountAmount().compareTo(BigDecimal.ZERO) > 0);
         
         
       
@@ -57,7 +57,7 @@ public class TestDiscount {
     public void testMaxDiscount(){
         p = new Product(1, new BigDecimal(100), "p1", "p2");        
         d = new Discount(new BigDecimal(0.71),p);
-        assertTrue(d.discountAmount.compareTo(new BigDecimal(0.7)) >= 0);
+        assertTrue(d.getDiscountAmount().compareTo(new BigDecimal(0.7)) >= 0);
         
         
       
@@ -74,17 +74,7 @@ public class TestDiscount {
       
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
     
     

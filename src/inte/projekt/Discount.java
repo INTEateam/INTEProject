@@ -31,10 +31,11 @@ public class Discount {
 
 
     public BigDecimal getPriceWithDiscount() {
-        p.price = p.price.multiply(this.discountAmount);
-        p.price = p.price.setScale(0, BigDecimal.ROUND_HALF_UP);
-
-        return p.price;
+    	BigDecimal temp;
+		temp = p.getPrice().multiply(this.discountAmount);
+		return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+    	
+      
     }
 
     public BigDecimal getDiscountAmount() {
