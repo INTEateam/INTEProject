@@ -1,6 +1,6 @@
 package inte.projekt;
 
-import freemarker.template.SimpleDate;
+//import freemarker.template.SimpleDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

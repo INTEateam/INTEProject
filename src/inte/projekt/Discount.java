@@ -29,13 +29,6 @@ public class Discount {
 
     }
 
-    public Product getP() {
-        return p;
-    }
-
-    public void setP(Product p) {
-        this.p = p;
-    }
 
     public BigDecimal getPriceWithDiscount() {
         p.price = p.price.multiply(this.discountAmount);

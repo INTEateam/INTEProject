@@ -35,7 +35,6 @@ public class TestDiscount {
   
     }
     
-    
     @Test
     public void testDiscountOnProduct(){
         p = new Product(1, new BigDecimal(100), "p1", "p2");
@@ -67,9 +66,9 @@ public class TestDiscount {
     public void testDiscountAmount(){
         p = new Product(1, new BigDecimal(100), "p1", "p2");        
         d = new Discount(new BigDecimal(0.6),p);
-        assertEquals(new BigDecimal(0.4), d.discountAmount);
+        assertEquals(new BigDecimal(0.4), d.getDiscountAmount());
         d.setDiscountAmount(new BigDecimal(0.4));
-        assertEquals(new BigDecimal(0.6), d.discountAmount);
+        assertEquals(new BigDecimal(0.6), d.getDiscountAmount());
         
         
       
