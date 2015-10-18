@@ -55,7 +55,7 @@
 
 	<target name="runTests" description="Run JUnit tests" depends="compileTest" >
 		<jacoco:coverage destfile="build/remote.exec">
-			<junit printsummary="yes" dir="build/classes" fork="true">
+			<junit printsummary="yes" dir="build/classes">
 				<classpath>
 					<pathelement location="lib/junit-4.12.jar" />
 					<pathelement location="lib/hamcrest-core-1.3.jar" />
@@ -63,13 +63,11 @@
 					<!--<pathelement location="build/classes" />-->		
 				</classpath>
 				
-				 <test name="test.inte.projekt" haltonfailure="no" outfile="result">
-					<formatter type="xml"/>
-				</test>
+				<formatter type="xml"/>			
 				
-				<batchtest>
+				<batchtest fork="yes">
 					<fileset dir="test/inte/projekt">
-							<include name="**/*Test*" />
+						<include name="**/*Test*.class" />
 					</fileset>
 				</batchtest>
 			</junit>
@@ -91,13 +89,13 @@
 					<fileset dir="build/classes"/>
 				</classfiles>
 				<sourcefiles encoding="UTF-8">
-					<fileset dir="build/classes"/>
+					<fileset dir="src/inte/projekt"/>
 				</sourcefiles>
 			</structure>
 			<!--  to produce reports in different formats.  -->
 			<html destdir="reportJacoco/"/>
-			<!--<csv destfile="reportJacoco/reportJacoco.csv"/>
-			<xml destfile="reportJacoco/reportJacoco.xml"/>-->
+			<!--<csv destfile="reportJacoco/reportJacoco.csv"/> -->
+			<!--<xml destfile="reportJacoco/reportJacoco.xml"/> -->
 		</jacoco:report>
 	</target>
 </project>
