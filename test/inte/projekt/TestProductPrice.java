@@ -1,10 +1,11 @@
 package inte.projekt;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import project.Product;
-import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class TestProductPrice {
 	
