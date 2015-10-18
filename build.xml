@@ -55,7 +55,7 @@
 
 	<target name="runTests" description="Run JUnit tests" depends="compileTest" >
 		<jacoco:coverage destfile="build/remote.exec">
-			<junit printsummary="yes" dir="build/classes">
+			<junit printsummary="yes" dir="build/classes" fork="true">
 				<classpath>
 					<pathelement location="lib/junit-4.12.jar" />
 					<pathelement location="lib/hamcrest-core-1.3.jar" />
