@@ -50,7 +50,7 @@
 	</target>
 
 	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-		<classpath path="lib/jacocoant.jar"/>
+		<classpath path="jacoco/lib/jacocoant.jar"/>
 	</taskdef>
 
 	<target name="runTests" description="Run JUnit tests" depends="compileTest" >
