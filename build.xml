@@ -78,7 +78,7 @@
 			 This task needs the collected execution data and ... 
 			-->
 			<executiondata>
-				<file file="remote.exec"/>
+				<file file="build/remote.exec"/>
 			</executiondata>
 			<!--  the class files and optional source files ...  -->
 			<structure name="JaCoCo Ant Example">
