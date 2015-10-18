@@ -62,10 +62,15 @@
 					<pathelement location="build/test" />
 					<!--<pathelement location="build/classes" />-->		
 				</classpath>
+				
+				 <test name="test.inte.projekt" haltonfailure="no" outfile="result">
+					<formatter type="xml"/>
+				</test>
+				
 				<batchtest>
-				<fileset dir="test/inte/projekt">
-						<include name="**/*Test*" />
-				   </fileset>
+					<fileset dir="test/inte/projekt">
+							<include name="**/*Test*" />
+					</fileset>
 				</batchtest>
 			</junit>
 		</jacoco:coverage>
