@@ -89,7 +89,7 @@
 					<fileset dir="build/classes"/>
 				</classfiles>
 				<sourcefiles encoding="UTF-8">
-					<fileset dir="src/inte/projekt"/>
+					<fileset dir="build/classes"/>
 				</sourcefiles>
 			</structure>
 			<!--  to produce reports in different formats.  -->
