@@ -28,8 +28,18 @@ public class TestCustomer {
     }
 
     @Test (expected = Exception.class)
+    public void testPersonnrDateValidityInvalidDay12Digits(){
+        new Customer("199503359995","Namn Efternamn","Gata","nr",true);
+    }
+
+    @Test (expected = Exception.class)
     public void testPersonnrDateValidityInvalidMonth(){
         new Customer("9214259997","Namn Efternamn","Gata","nr",true);
+    }
+
+    @Test (expected = Exception.class)
+    public void testPersonnrDateValidityInvalidMonth12Digits(){
+        new Customer("199214259997","Namn Efternamn","Gata","nr",true);
     }
 
     @Test
@@ -43,6 +53,18 @@ public class TestCustomer {
     }
 
     @Test
+    public void testPersonnrDateValidityLeapYear12Digits(){
+        new Customer("198402299997","Namn Efternamn","Gata","nr",true);
+    }
+
+    @Test (expected = Exception.class)
+    public void testPersonnrDateValidityNotLeapYear12Digits(){
+        new Customer("198302299998","Namn Efternamn","Gata","nr",true);
+    }
+
+
+
+    @Test
     public void testPersonnrChecksumValid(){
         Customer c = new Customer("8112189876","Namn Efternamn", "Gata", "nr", true);
         assertEquals(true,c.validChecksum(c.getPersonnr()));
@@ -51,6 +73,18 @@ public class TestCustomer {
     @Test
     public void testPersonnrChecksumInvalid(){
         Customer c = new Customer("8112189877","Namn Efternamn", "Gata", "nr", true);
+        assertEquals(false,c.validChecksum(c.getPersonnr()));
+    }
+
+    @Test
+    public void testPersonnrChecksumValid12digits(){
+        Customer c = new Customer("198112189876","Namn Efternamn", "Gata", "nr", true);
+        assertEquals(true,c.validChecksum(c.getPersonnr()));
+    }
+
+    @Test
+    public void testPersonnrChecksumInvalid12digits(){
+        Customer c = new Customer("198112189877","Namn Efternamn", "Gata", "nr", true);
         assertEquals(false,c.validChecksum(c.getPersonnr()));
     }
 
