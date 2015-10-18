@@ -1,0 +1,97 @@
+<project name="project" xmlns:jacoco="antlib:org.jacoco.ant">
+
+	<presetdef name="javac">
+		<javac includeantruntime="false" />
+	</presetdef>
+
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+
+	<target name="compile" depends="clean">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src/inte" destdir="build/classes"/>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<mkdir dir="build/jar"/>
+		<jar destfile="build/jar/inte.projekt.jar">
+			<fileset dir="build/classes" />
+			<fileset dir="src/inte" includes="**/*.java"/>
+		</jar>
+	</target>
+	
+	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+         classpath="checkstyle-6.11.2-all.jar"/>
+
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>
+	<property name="findbugs.home" value="findbugs" />
+
+	<target name="findbugs" depends="jar">
+		<findbugs home="${findbugs.home}"
+              output="xml:withMessages"
+              outputFile="findbugs.xml"
+			  effort="max"
+			  reportLevel="low">
+			<sourcePath path="src/inte/project" />
+			<class location="build/jar/inte.projekt.jar" />
+		</findbugs>
+	</target>	
+
+	<target name="compileTest" depends="compile">
+		<mkdir dir="build/test"/>
+		<javac srcdir="test/inte" destdir="build/test">
+			<classpath>
+				<pathelement location="lib/junit-4.12.jar" />
+				<pathelement location="lib/hamcrest-core-1.3.jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="lib/jacocoant.jar"/>
+	</taskdef>
+
+	<target name="runTests" description="Run JUnit tests" depends="compileTest" >
+		<jacoco:coverage destfile="build/remote.exec">
+			<junit printsummary="yes" dir="build/classes" fork="true">
+				<classpath>
+					<pathelement location="build/test" />
+					<pathelement location="build/classes" />
+					<pathelement location="junit-4.12.jar" />
+					<pathelement location="hamcrest-core-1.3.jar" />
+				</classpath>
+				<batchtest>
+				<fileset dir="test/inte/projekt">
+						<include name="**/*Test*" />
+				   </fileset>
+				</batchtest>
+			</junit>
+		</jacoco:coverage>
+	</target>
+
+	<target name="report" depends="runTests">
+		<!--  Step 3: Create coverage report  -->
+		<jacoco:report>
+			<!--
+			 This task needs the collected execution data and ... 
+			-->
+			<executiondata>
+				<file file="remote.exec"/>
+			</executiondata>
+			<!--  the class files and optional source files ...  -->
+			<structure name="JaCoCo Ant Example">
+				<classfiles>
+					<fileset dir="build/classes"/>
+				</classfiles>
+				<sourcefiles encoding="UTF-8">
+					<fileset dir="build/classes"/>
+				</sourcefiles>
+			</structure>
+			<!--  to produce reports in different formats.  -->
+			<html destdir="reportJacoco/"/>
+			<!--<csv destfile="reportJacoco/reportJacoco.csv"/>
+			<xml destfile="reportJacoco/reportJacoco.xml"/>-->
+		</jacoco:report>
+	</target>
+</project>
