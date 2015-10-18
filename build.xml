@@ -54,7 +54,7 @@
 	</taskdef>
 
 	<target name="runTests" description="Run JUnit tests" depends="compileTest" >
-		<jacoco:coverage destfile="build/remote.exec">
+		<jacoco:coverage destfile="remote.exec">
 			<junit printsummary="yes" dir="build/classes" fork="true">
 				<classpath>
 					<pathelement location="lib/junit-4.12.jar" />
@@ -81,7 +81,7 @@
 			 This task needs the collected execution data and ... 
 			-->
 			<executiondata>
-				<file file="build/remote.exec"/>
+				<file file="remote.exec"/>
 			</executiondata>
 			<!--  the class files and optional source files ...  -->
 			<structure name="JaCoCo Ant Example">
