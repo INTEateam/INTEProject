@@ -1,7 +1,5 @@
 package inte.projekt;
 
-import inte.projekt.Product;
-import inte.projekt.Receipt;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -90,7 +88,7 @@ public class TestReceipt {
     
     @Test
     public void testAddProductWithDiscount(){
-        Product p = new Product(1, new BigDecimal(10), "p1", "p2");
+        Product p = new Product(1, new BigDecimal(10), "product 1", "typ 2");
         Discount d = new Discount(new BigDecimal(0.2), p);
         p.price = d.getPriceWithDiscount();
         r.addProduct(p);
@@ -99,11 +97,11 @@ public class TestReceipt {
     }
      @Test
     public void testAddMultipleProductsWithDiscount(){
-        Product p = new Product(1, new BigDecimal(10), "p1", "p2");
+        Product p = new Product(1, new BigDecimal(10), "product 1", "typ 2");
         Discount d = new Discount(new BigDecimal(0.2), p);
         p.price = d.getPriceWithDiscount();
         r.addProduct(p);
-        Product p1 = new Product(2, new BigDecimal(20), "p1", "p2");
+        Product p1 = new Product(2, new BigDecimal(20), "product 1", "typ 2");
         Discount d1 = new Discount(new BigDecimal(0.5), p1);
         p1.price = d1.getPriceWithDiscount();
         r.addProduct(p1);
