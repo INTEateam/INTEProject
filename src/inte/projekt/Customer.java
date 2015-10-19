@@ -5,6 +5,7 @@ package inte.projekt;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * Created by Nicklas on 2015-10-14.
@@ -12,15 +13,17 @@ import java.util.Date;
 public class Customer {
     String personnr;
     String name;
+    String surname;
     String adress;
-    String gatunummer;
+    String streetnumber;
     Boolean member;
 
-    public Customer(String personnr, String name, String adress, String gatunummer, Boolean member){
+    public Customer(String personnr, String name, String surname, String adress, String gatunummer, Boolean member){
         setPersonnr(personnr);
-        this.name = name;
-        this.adress = adress;
-        this.gatunummer = gatunummer;
+        setName(name);
+        setSurname(surname);
+        setAdress(adress);
+        this.streetnumber = gatunummer;
         this.member = member;
     }
 
@@ -61,7 +64,35 @@ public class Customer {
     }
 
     public void setName(String name) {
-        this.name = name;
+        String s = name.replaceAll("\\s","");
+        Pattern pattern = Pattern.compile("(.)*([\\W]|[\\d])(.)*");
+        if(s.equals("")){
+            throw new IllegalArgumentException("Name can't be empty.");
+        }else if(pattern.matcher(s).matches()){ // Pattern checks if string contains any digits or special characters.
+            throw new IllegalArgumentException("Name can't contain digits or special characters.");
+        }else{
+            this.name = s;
+        }
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        String s = surname.replaceAll("\\s","");
+        Pattern pattern = Pattern.compile("(.)*([\\W]|[\\d])(.)*");
+        if(s.equals("")){
+            throw new IllegalArgumentException("Surname can't be empty.");
+        }else if(pattern.matcher(s).matches()){
+            throw new IllegalArgumentException("Surname can't contain digits or special characters.");
+        }else{
+            this.surname = s;
+        }
+    }
+
+    public String getFullName() {
+        return getName() + " " + getSurname();
     }
 
     public String getAdress() {
@@ -69,7 +100,23 @@ public class Customer {
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        String s = adress.trim();
+        Pattern pattern = Pattern.compile("(.)*([^\\w\\s]|[\\d])(.)*");
+        if(s.equals("")){
+            throw new IllegalArgumentException("Adress can't be empty.");
+        }else if(pattern.matcher(s).matches()){
+            throw new IllegalArgumentException("Adress can't contain digits or special characters.");
+        }else{
+            this.adress = s;
+        }
+    }
+
+    public String getStreetnumber() {
+        return streetnumber;
+    }
+
+    public void setStreetnumber(String streetnumber) {
+        this.streetnumber = streetnumber;
     }
 
     public Boolean getMember() {
@@ -122,4 +169,5 @@ public class Customer {
         }
         return (s1 + s2) % 10 == 0;
     }
+
 }
