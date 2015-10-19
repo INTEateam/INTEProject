@@ -32,6 +32,9 @@ public class Receipt {
         return sum;
 
     }
+    public List getProductList(){
+        return products;
+    }
 
     public boolean removeProduct(int id){
         Product pRem = null;

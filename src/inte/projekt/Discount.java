@@ -29,13 +29,16 @@ public class Discount {
 
     }
 
-
     public BigDecimal getPriceWithDiscount() {
-    	BigDecimal temp;
-		temp = p.getPrice().multiply(this.discountAmount);
-		return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
-    	
-      
+        BigDecimal temp;
+
+        if (discountAmount.equals(BigDecimal.ZERO)) {
+            return p.getPrice();
+        } else {
+            temp = p.getPrice().multiply(this.discountAmount);
+            return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+        }
+
     }
 
     public BigDecimal getDiscountAmount() {
@@ -44,8 +47,17 @@ public class Discount {
     }
 
     public void setDiscountAmount(BigDecimal discountAmount) {
+        if (discountAmount.equals(BigDecimal.ZERO)) {
+            this.discountAmount = BigDecimal.ZERO;
+        } else {
+            this.discountAmount = new BigDecimal(1).subtract(discountAmount);
+        }
 
-        this.discountAmount = new BigDecimal(1).subtract(discountAmount);
+    }
+
+    public void resetDiscountAmount() {
+        
+        this.discountAmount = BigDecimal.ZERO;
 
     }
 

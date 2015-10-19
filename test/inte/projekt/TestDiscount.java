@@ -37,7 +37,7 @@ public class TestDiscount {
     
     @Test
     public void testDiscountOnProduct(){
-        p = new Product(1, new BigDecimal(100), "p1", "p2");
+        p = new Product(1, new BigDecimal(100), "bread", "sweetbread");
         d = new Discount(new BigDecimal(0.3), p);
         assertEquals(new BigDecimal(100), p.getPrice());
         assertEquals(new BigDecimal(70), d.getPriceWithDiscount());
@@ -46,7 +46,7 @@ public class TestDiscount {
     }
     @Test (expected = IllegalArgumentException.class)
     public void testNegativeDiscount(){
-        p = new Product(1, new BigDecimal(100), "p1", "p2");        
+        p = new Product(1, new BigDecimal(100), "bread", "sweetbread");        
         d = new Discount(new BigDecimal(-0.2),p);
         assertTrue(d.getDiscountAmount().compareTo(BigDecimal.ZERO) > 0);
         
@@ -55,7 +55,7 @@ public class TestDiscount {
     }
     @Test (expected = IllegalArgumentException.class)
     public void testMaxDiscount(){
-        p = new Product(1, new BigDecimal(100), "p1", "p2");        
+        p = new Product(1, new BigDecimal(100), "bread", "sweetbread");        
         d = new Discount(new BigDecimal(0.71),p);
         assertTrue(d.getDiscountAmount().compareTo(new BigDecimal(0.7)) >= 0);
         
@@ -64,7 +64,7 @@ public class TestDiscount {
     }
     @Test
     public void testDiscountAmount(){
-        p = new Product(1, new BigDecimal(100), "p1", "p2");        
+        p = new Product(1, new BigDecimal(100), "bread", "sweetbread");        
         d = new Discount(new BigDecimal(0.6),p);
         assertEquals(new BigDecimal(0.4), d.getDiscountAmount());
         d.setDiscountAmount(new BigDecimal(0.4));
@@ -72,6 +72,14 @@ public class TestDiscount {
         
         
       
+    }
+    @Test
+    public void testResetDiscountAmount(){
+        p = new Product(1, new BigDecimal(100), "bread", "sweetbread");        
+        d = new Discount(new BigDecimal(0.6),p);
+        assertEquals(new BigDecimal(40), d.getPriceWithDiscount());
+        d.resetDiscountAmount();
+        assertEquals(new BigDecimal(100), d.getPriceWithDiscount());
     }
     
  
