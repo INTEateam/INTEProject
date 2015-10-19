@@ -47,6 +47,12 @@ public class TestReceipt {
     }
 
     @Test
+    public void addNULLProduct(){
+        //Nothing should happen
+        r.addProduct(null);
+    }
+
+    @Test
     public void testRemoveNonexistentProduct(){
         assertEquals(false, r.removeProduct(5));
     }

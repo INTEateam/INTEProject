@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class Receipt {
     private List<Product> products;
-   
 
     public Receipt(){
         products = new ArrayList<>();
@@ -30,13 +29,15 @@ public class Receipt {
             sum = sum.add(p.getPrice());
         }
         return sum;
-
     }
+
     public List getProductList(){
-        return products;
+        //TODO deep copy?
+        return new ArrayList<>(products);
     }
 
     public boolean removeProduct(int id){
+        //TODO iterator
         Product pRem = null;
         for(Product p : products){
             if(p.getId() == id){
@@ -44,6 +45,7 @@ public class Receipt {
                 break;
             }
         }
+
         return products.remove(pRem);
     }
 

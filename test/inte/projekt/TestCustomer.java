@@ -56,7 +56,7 @@ public class TestCustomer {
         new Customer("198402299997","Namn", "Efternamn","Gata","nr",true);
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testPersonnrDateValidityNotLeapYear12Digits(){
         new Customer("198302299998","Namn", "Efternamn","Gata","nr",true);
     }
@@ -85,7 +85,7 @@ public class TestCustomer {
         assertEquals(false,c.validChecksum(c.getPersonnr()));
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testNameBlankName(){
         new Customer("8112189876","","Efternamn","Gata","nr",true);
     }
@@ -96,17 +96,17 @@ public class TestCustomer {
         assertEquals("A",c.getName());
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testNameContainsDigits(){
         new Customer("8112189876","Namn 123", "Efternamn","Gata","nr",true);
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testNameContainsSpecialCharacters(){
         new Customer("8112189876","Kurt %#¤%&}][€", "Efternamn","Gata","nr",true);
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testSurnameBlankSurname(){
         Customer c = new Customer("8112189876","Namn","","Gata","nr",true);
     }
@@ -117,12 +117,12 @@ public class TestCustomer {
         assertEquals("B",c.getSurname());
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testSurnameContainsDigits(){
         new Customer("8112189876","Namn", "Efternamn 456","Gata","nr",true);
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testSurnameContainsSpecialCharacters(){
         new Customer("8112189876","Namn", "Bergstedt $€{[]}","Gata","nr",true);
     }
@@ -147,7 +147,7 @@ public class TestCustomer {
         assertEquals("Efternamn",c.getSurname());
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testAdressBlankAdress(){
         new Customer("8112189876","Namn", "Efternamn","","nr",true);
     }
@@ -157,12 +157,12 @@ public class TestCustomer {
         new Customer("8112189876","Namn", "Efternamn","G","nr",true);
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testAdressContainsDigits(){
         new Customer("8112189876","Namn", "Efternamn","Gata 123","nr",true);
     }
 
-    @Test (expected = Exception.class)
+    @Test (expected = IllegalArgumentException.class)
     public void testAdressContainsSpecialCharacters(){
         new Customer("8112189876","Namn", "Efternamn","#¤%","nr",true);
     }
