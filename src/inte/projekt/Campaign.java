@@ -25,10 +25,12 @@ public class Campaign {
 
     }
 
+    @SuppressWarnings("unchecked")
     public void setThreeForTwoDiscount(int id) {
 
         int counter = 0;
         List<Product> products;
+        //noinspection unchecked,unchecked
         products = r.getProductList();
 
         for (Product product : products) {

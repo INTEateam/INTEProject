@@ -76,7 +76,7 @@ public class Product {
 			throw new IllegalArgumentException("name too short");
 		} else if (name.length() > 50) {
 			throw new IllegalArgumentException("name too long");
-		} else if (name.equals(null)) {
+		} else if (name == null ) {
 			throw new NullPointerException("name is not allowed to be null");
 		} else
 			throw new IllegalArgumentException("Invalid name");
@@ -96,7 +96,7 @@ public class Product {
 			throw new IllegalArgumentException("category too short");
 		} else if (category.length() > 50) {
 			throw new IllegalArgumentException("category too long");
-		} else if (category.equals(null)) {
+		} else if (category == null) {
 			throw new NullPointerException("category is not allowed to be null");
 		} else
 			throw new IllegalArgumentException("Invalid category");
