@@ -63,7 +63,11 @@
 					<!--<pathelement location="build/classes" />-->		
 				</classpath>
 				
-				<formatter type="xml"/>			
+				<formatter type="xml"/>		
+				
+				 <test name="inte.project" haltonfailure="no" outfile="result">
+					<formatter type="xml"/>
+				</test>
 				
 				<batchtest fork="yes" todir="/build">
 					<fileset dir="test/inte/projekt">
