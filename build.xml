@@ -65,7 +65,7 @@
 				
 				<formatter type="xml"/>			
 				
-				<batchtest fork="yes">
+				<batchtest fork="yes" todir="/build">
 					<fileset dir="test/inte/projekt">
 						<include name="**/*Test*.class" />
 					</fileset>
