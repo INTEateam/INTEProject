@@ -54,6 +54,7 @@
 	</taskdef>
 
 	<target name="runTests" description="Run JUnit tests" depends="compileTest" >
+		<mkdir dir="reports"/>
 		<!--<jacoco:coverage destfile="remote.exec">-->
 		<junit printsummary="yes" dir="build/classes" fork="true">
 			<classpath>
