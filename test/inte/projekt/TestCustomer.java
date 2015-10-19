@@ -1,4 +1,4 @@
-package inte.projekt;
+ï»¿package inte.projekt;
 
 import org.junit.Test;
 
@@ -103,7 +103,7 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testNameContainsSpecialCharacters(){
-        Customer c = new Customer("8112189876","Kurt %#¤%&}][€", "Efternamn","Gata","nr",true);
+        Customer c = new Customer("8112189876","Kurt %#Â¤%&}][â‚¬", "Efternamn","Gata","nr",true);
     }
 
     @Test (expected = Exception.class)
@@ -124,7 +124,7 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testSurnameContainsSpecialCharacters(){
-        Customer c = new Customer("8112189876","Namn", "Bergstedt $€{[]}","Gata","nr",true);
+        Customer c = new Customer("8112189876","Namn", "Bergstedt $â‚¬{[]}","Gata","nr",true);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testAdressContainsSpecialCharacters(){
-        Customer c = new Customer("8112189876","Namn", "Efternamn","#¤%","nr",true);
+        Customer c = new Customer("8112189876","Namn", "Efternamn","#Â¤%","nr",true);
     }
 
     @Test
