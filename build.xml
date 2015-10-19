@@ -6,6 +6,7 @@
 
 	<target name="clean">
 		<delete dir="build"/>
+		<delete dir="reports"/>
 	</target>
 
 	<target name="compile" depends="clean">
