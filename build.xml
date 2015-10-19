@@ -54,7 +54,7 @@
 	</taskdef>
 
 	<target name="runTests" description="Run JUnit tests" depends="compileTest" >
-		<jacoco:coverage destfile="remote.exec">
+		<!--<jacoco:coverage destfile="remote.exec">-->
 			<junit printsummary="yes" dir="build/classes" fork="true">
 				<classpath>
 					<pathelement location="lib/junit-4.12.jar" />
@@ -71,9 +71,10 @@
 					</fileset>
 				</batchtest>
 			</junit>
-		</jacoco:coverage>
+		<!--</jacoco:coverage>-->
 	</target>
 
+	
 	<target name="report" depends="runTests">
 		<!--  Step 3: Create coverage report  -->
 		<jacoco:report>
@@ -98,4 +99,5 @@
 			<!--<xml destfile="reportJacoco/reportJacoco.xml"/> -->
 		</jacoco:report>
 	</target>
+	
 </project>
