@@ -5,21 +5,20 @@
  */
 package inte.projekt;
 
+import org.junit.*;
+
 import java.math.BigDecimal;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
  * @author andre
  */
 public class TestDiscount {
-    Product p;
-    Discount d;
+    private Product p;
+    private Discount d;
          
     
     @BeforeClass

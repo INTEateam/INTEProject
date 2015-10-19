@@ -11,19 +11,19 @@ import static org.junit.Assert.assertEquals;
 public class TestCustomer {
     @Test
     public void testPersonnr(){
-        Customer c = new Customer("198001013310","Namn", "Efternamn", "Gata", "nr", true);
+        Customer c = new Customer("198001013310","Namn", "Efternamn", "Gata", "nr1", true);
         assertEquals("198001013310",c.getPersonnr());
     }
 
     @Test
     public void testPersonnrTen(){
-        Customer c = new Customer("9001013318","Namn", "Efternamn", "Gata", "nr", true);
+        Customer c = new Customer("9001013318","Namn", "Efternamn", "Gata", "nr2", true);
         assertEquals("9001013318",c.getPersonnr());
     }
 
     @Test (expected = Exception.class)
     public void testPersonnrDateValidityInvalidDay(){
-        new Customer("9503359995","Namn", "Efternamn","Gata","nr",true);
+        new Customer("9503359995","Namn", "Efternamn","Gata","nr3",true);
     }
 
     @Test (expected = Exception.class)
@@ -87,7 +87,7 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testNameBlankName(){
-        Customer c = new Customer("8112189876","","Efternamn","Gata","nr",true);
+        new Customer("8112189876","","Efternamn","Gata","nr",true);
     }
 
     @Test
@@ -98,12 +98,12 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testNameContainsDigits(){
-        Customer c = new Customer("8112189876","Namn 123", "Efternamn","Gata","nr",true);
+        new Customer("8112189876","Namn 123", "Efternamn","Gata","nr",true);
     }
 
     @Test (expected = Exception.class)
     public void testNameContainsSpecialCharacters(){
-        Customer c = new Customer("8112189876","Kurt %#¤%&}][€", "Efternamn","Gata","nr",true);
+        new Customer("8112189876","Kurt %#¤%&}][€", "Efternamn","Gata","nr",true);
     }
 
     @Test (expected = Exception.class)
@@ -119,12 +119,12 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testSurnameContainsDigits(){
-        Customer c = new Customer("8112189876","Namn", "Efternamn 456","Gata","nr",true);
+        new Customer("8112189876","Namn", "Efternamn 456","Gata","nr",true);
     }
 
     @Test (expected = Exception.class)
     public void testSurnameContainsSpecialCharacters(){
-        Customer c = new Customer("8112189876","Namn", "Bergstedt $€{[]}","Gata","nr",true);
+        new Customer("8112189876","Namn", "Bergstedt $€{[]}","Gata","nr",true);
     }
 
     @Test
@@ -149,22 +149,22 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testAdressBlankAdress(){
-        Customer c = new Customer("8112189876","Namn", "Efternamn","","nr",true);
+        new Customer("8112189876","Namn", "Efternamn","","nr",true);
     }
 
     @Test
     public void testAdress1Character(){
-        Customer c = new Customer("8112189876","Namn", "Efternamn","G","nr",true);
+        new Customer("8112189876","Namn", "Efternamn","G","nr",true);
     }
 
     @Test (expected = Exception.class)
     public void testAdressContainsDigits(){
-        Customer c = new Customer("8112189876","Namn", "Efternamn","Gata 123","nr",true);
+        new Customer("8112189876","Namn", "Efternamn","Gata 123","nr",true);
     }
 
     @Test (expected = Exception.class)
     public void testAdressContainsSpecialCharacters(){
-        Customer c = new Customer("8112189876","Namn", "Efternamn","#¤%","nr",true);
+        new Customer("8112189876","Namn", "Efternamn","#¤%","nr",true);
     }
 
     @Test

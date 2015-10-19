@@ -11,12 +11,12 @@ import java.util.regex.Pattern;
  * Created by Nicklas on 2015-10-14.
  */
 public class Customer {
-    String personnr;
-    String name;
-    String surname;
-    String adress;
-    String streetnumber;
-    Boolean member;
+    private String personnr;
+    private String name;
+    private String surname;
+    private String adress;
+    private String streetnumber;
+    private Boolean member;
 
     public Customer(String personnr, String name, String surname, String adress, String gatunummer, Boolean member){
         setPersonnr(personnr);
@@ -132,7 +132,7 @@ public class Customer {
             SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
             sdf.setLenient(false);
             try{
-                Date date = sdf.parse(dateToCheck);
+                Date date = sdf.parse(dateToCheck); //TODO is the Date object needed?
             }catch (ParseException e){
                 return false;
             }
@@ -140,7 +140,7 @@ public class Customer {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             sdf.setLenient(false);
             try{
-                Date date = sdf.parse(dateToCheck);
+                Date date = sdf.parse(dateToCheck); //TODO is the Date object needed?
             }catch (ParseException e){
                 return false;
             }

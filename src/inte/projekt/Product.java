@@ -6,10 +6,10 @@ import java.math.BigDecimal;
  * Created by Nicklas on 2015-10-14, modified by John on 2015-10-18
  */
 public class Product {
-	int id;
+	private int id;
 	BigDecimal price;
-	String name;
-	String category;
+	private String name;
+	private String category;
 
 	public Product(int id, BigDecimal price, String name, String category) {
 
@@ -68,6 +68,7 @@ public class Product {
 
 	public void setName(String name) {
 		// Assumption of valid length interval according to some req. specifiation
+		//TODO NULL test need to be done first name.length() throws NullPointerException if name is null
 		if (name.length() > 2 && name.length() <= 50) {
 
 			validateName(name);
@@ -97,6 +98,7 @@ public class Product {
 		} else if (category.length() > 50) {
 			throw new IllegalArgumentException("category too long");
 		} else if (category == null) {
+			//TODO NULL test need to be done first, name.length() throws NullPointerException if name is null
 			throw new NullPointerException("category is not allowed to be null");
 		} else
 			throw new IllegalArgumentException("Invalid category");

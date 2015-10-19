@@ -13,8 +13,8 @@ import java.math.BigDecimal;
  */
 public class Discount {
 
-    Product p;
-    BigDecimal discountAmount;
+    private Product p;
+    private BigDecimal discountAmount;
 
     public Discount(BigDecimal discountAmount, Product p) {
         if (discountAmount.compareTo(BigDecimal.ZERO) > 0 && discountAmount.compareTo(new BigDecimal(0.7)) <= 0) {

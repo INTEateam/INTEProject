@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * test
  */
 public class TestReceipt {
-    Receipt r;
+    private Receipt r;
 
     @Before
     public void before(){

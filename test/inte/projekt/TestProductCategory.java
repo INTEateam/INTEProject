@@ -11,7 +11,7 @@ public class TestProductCategory {
 	private static final int VALID_ID = 1;
 	private static final BigDecimal VALID_PRICE = new BigDecimal(10);
 	private static final String VALID_NAME = "Milk";
-	private String aVeryLongString = "thisIsaStringThatConsistsOfValidCharactersButIsTooLong";
+	private final String aVeryLongString = "thisIsaStringThatConsistsOfValidCharactersButIsTooLong";
 
 	@Test
 	public void testSimpleCategory() {

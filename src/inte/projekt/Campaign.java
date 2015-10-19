@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Campaign {
 
-    Receipt r;
-    BigDecimal totalDiscount;
+    private Receipt r;
+    private BigDecimal totalDiscount;
 
     public Campaign(Receipt r) {
 
