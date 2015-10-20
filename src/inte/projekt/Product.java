@@ -6,8 +6,8 @@ import java.math.BigDecimal;
  * Created by Nicklas on 2015-10-14, modified by John on 2015-10-18
  */
 public class Product {
-    private int id;
     BigDecimal price;
+    private int id;
     private String name;
     private String category;
 
@@ -27,19 +27,23 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
 
-        if (price.signum() == 1) {
-
-            checkDecimals(price);
-
-        } else if (price.signum() == 0) {
-            throw new IllegalArgumentException("Price cannot be 0");
-        } else if (price.signum() == -1) {
-            throw new IllegalArgumentException("Price cannot be negative");
-        } else if (price.scale() > 2) {
+        if (price.scale() > 2) {
             throw new IllegalArgumentException(
                     "No more than two decimals are allowed");
-        } else
-            throw new IllegalArgumentException("Invalid price");
+        } else {
+
+            if (price.signum() == 1) {
+
+                checkDecimals(price);
+
+            } else if (price.signum() == 0) {
+                throw new IllegalArgumentException("Price cannot be 0");
+            } else if (price.signum() == -1) {
+                throw new IllegalArgumentException("Price cannot be negative");
+            } else { // TODO Remove, Unreachable?
+                throw new IllegalArgumentException("Invalid price");
+            }
+        }
 
     }
 
@@ -56,8 +60,9 @@ public class Product {
                     "ID is not allowed to be negative");
         } else if (id > 0) {
             this.id = id;
-        } else
+        } else { // TODO Remove, Unreachable?
             throw new IllegalArgumentException("Invalid ID");
+        }
     }
 
     public String getName() {
@@ -75,8 +80,10 @@ public class Product {
                 throw new IllegalArgumentException("name too short");
             } else if (name.length() > 50) {
                 throw new IllegalArgumentException("name too long");
-            } else
+            } else {
+                //TODO Remove, Unreachable?
                 throw new IllegalArgumentException("Invalid name");
+            }
         } else {
             throw new NullPointerException("name is not allowed to be null");
         }
@@ -97,8 +104,10 @@ public class Product {
                 throw new IllegalArgumentException("category too short");
             } else if (category.length() > 50) {
                 throw new IllegalArgumentException("category too long");
-            } else
+            } else {
+                //TODO Remove, Unreachable?
                 throw new IllegalArgumentException("Invalid category");
+            }
         } else {
             throw new NullPointerException("category is not allowed to be null");
         }
@@ -108,7 +117,7 @@ public class Product {
 
         if (price.scale() >= 0 && price.scale() <= 2) {
             this.price = price;
-        } else
+        } else //TODO Duplicate check why?
             throw new ArithmeticException(
                     "No more than two decimals are allowed");
 
