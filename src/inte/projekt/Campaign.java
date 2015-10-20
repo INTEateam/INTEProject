@@ -29,9 +29,9 @@ public class Campaign {
     public void setThreeForTwoDiscount(int id) {
 
         int counter = 0;
-        List<Product> products;
-        //noinspection unchecked,unchecked
-        products = r.getProductList();
+
+        //TODO generic class
+        List<Product> products = r.getProductList();
 
         for (Product product : products) {
 
