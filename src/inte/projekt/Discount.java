@@ -46,7 +46,7 @@ public class Discount {
 
     public void setDiscountAmount(BigDecimal discountAmount) {
         if (discountAmount.equals(BigDecimal.ZERO)) {
-            this.discountAmount = BigDecimal.ZERO;
+            this.discountAmount = BigDecimal.ZERO; //TODO Test, line never run
         } else {
             this.discountAmount = new BigDecimal(1).subtract(discountAmount);
         }
