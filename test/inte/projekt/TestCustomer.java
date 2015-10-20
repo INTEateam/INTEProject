@@ -179,7 +179,7 @@ public class TestCustomer {
 
     @Test (expected = Exception.class)
     public void testStreetNumberContainsSpecialCharacters(){
-        new Customer("8112189876","Namn","Efternamn","Gata","#¤%&/)(=","12345",true);
+        new Customer("8112189876","Namn","Efternamn","Gata","#%&/)(=","12345",true);
     }
 
     @Test
