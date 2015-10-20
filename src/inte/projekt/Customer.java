@@ -14,22 +14,25 @@ public class Customer {
     private String personnr;
     private String name;
     private String surname;
-    private String adress;
+    private String address;
     private String streetnumber;
+    private String zipcode;
     private Boolean member;
 
-    public Customer(String personnr, String name, String surname, String adress, String gatunummer, Boolean member){
+    public Customer(String personnr, String name, String surname, String address, String streetnumber, String zipcode, Boolean member){
         setPersonnr(personnr);
         setName(name);
         setSurname(surname);
-        setAdress(adress);
-        this.streetnumber = gatunummer;
+        setAddress(address);
+        setStreetnumber(streetnumber);
+        setZipcode(zipcode);
         this.member = member;
     }
 
-    public Customer(String personnr, String name, Boolean member){
-        this.personnr = personnr;
-        this.name = name;
+    public Customer(String personnr, String name, String surname, Boolean member){
+        setPersonnr(personnr);
+        setName(name);
+        setSurname(surname);
         this.member = member;
     }
 
@@ -40,22 +43,18 @@ public class Customer {
     private void setPersonnr(String personnr){
         if(personnr.length() == 10){
             String datepart = personnr.substring(0,6);
-            if(validDate(datepart, 10)){
+            if(validDate(datepart, 10) && validChecksum(personnr)){
                 this.personnr = personnr;
             }else{
                 throw new IllegalArgumentException("Invalid personnr.");
             }
         }else if(personnr.length() == 12){
-            if(personnr.charAt(0) == '1' && personnr.charAt(1) == '9'){
                 String datepart = personnr.substring(0,8);
-                if(validDate(datepart,12)){
+                if(validDate(datepart,12) && validChecksum(personnr)){
                     this.personnr = personnr;
                 }else{
                     throw new IllegalArgumentException("Invalid personnr.");
                 }
-            }
-        }else {
-            throw new IllegalArgumentException("Invalid personnr");
         }
     }
 
@@ -64,7 +63,7 @@ public class Customer {
     }
 
     public void setName(String name) {
-        String s = name.replaceAll("\\s","");
+        String s = name.replace(" ","");
         Pattern pattern = Pattern.compile("(.)*([\\W]|[\\d])(.)*");
         if(s.equals("")){
             throw new IllegalArgumentException("Name can't be empty.");
@@ -80,7 +79,7 @@ public class Customer {
     }
 
     public void setSurname(String surname) {
-        String s = surname.replaceAll("\\s","");
+        String s = surname.replace(" ","");
         Pattern pattern = Pattern.compile("(.)*([\\W]|[\\d])(.)*");
         if(s.equals("")){
             throw new IllegalArgumentException("Surname can't be empty.");
@@ -95,19 +94,19 @@ public class Customer {
         return getName() + " " + getSurname();
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        String s = adress.trim();
+    public void setAddress(String address) {
+        String s = address.trim();
         Pattern pattern = Pattern.compile("(.)*([^\\w\\s]|[\\d])(.)*");
         if(s.equals("")){
-            throw new IllegalArgumentException("Adress can't be empty.");
+            throw new IllegalArgumentException("Address can't be empty.");
         }else if(pattern.matcher(s).matches()){
-            throw new IllegalArgumentException("Adress can't contain digits or special characters.");
+            throw new IllegalArgumentException("Address can't contain digits or special characters.");
         }else{
-            this.adress = s;
+            this.address = s;
         }
     }
 
@@ -116,7 +115,33 @@ public class Customer {
     }
 
     public void setStreetnumber(String streetnumber) {
-        this.streetnumber = streetnumber;
+        String s = streetnumber.trim();
+        Pattern pattern = Pattern.compile("(.)*([\\W])(.)*");
+        if(pattern.matcher(s).matches()){
+            throw new IllegalArgumentException("Address can't contain special characters.");
+        }else{
+            this.streetnumber = s;
+        }
+    }
+
+    public String getFullAddress(){
+        return getAddress() + " " + getStreetnumber();
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        String s = zipcode.replace(" ","");
+        Pattern pattern = Pattern.compile("(.)*([\\D])(.)*");
+        if(s.equals("") || s.length() != 5){
+            throw new IllegalArgumentException("Zipcode must be 5 digits long.");
+        }else if(pattern.matcher(s).matches()){
+            throw new IllegalArgumentException("Zipcode can't contain non-digits.");
+        }else{
+            this.zipcode = s;
+        }
     }
 
     public Boolean getMember() {
@@ -132,15 +157,19 @@ public class Customer {
             SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
             sdf.setLenient(false);
             try{
-                Date date = sdf.parse(dateToCheck); //TODO is the Date object needed?
+                sdf.parse(dateToCheck); //TODO is the Date object needed?
             }catch (ParseException e){
                 return false;
             }
         }else if(length == 12){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             sdf.setLenient(false);
+            Date today = new Date();
             try{
                 Date date = sdf.parse(dateToCheck); //TODO is the Date object needed?
+                if(date.after(today)){
+                    throw new IllegalArgumentException("Date of birth cannot specify a future date.");
+                }
             }catch (ParseException e){
                 return false;
             }
