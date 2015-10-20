@@ -91,7 +91,7 @@
 				<file file="reports/remote.exec"/>
 			</executiondata>
 			<!--  the class files and optional source files ...  -->
-			<structure name="JaCoCo Ant Example">
+			<structure name="INTE Project">
 				<classfiles>
 					<fileset dir="build/classes"/>
 				</classfiles>

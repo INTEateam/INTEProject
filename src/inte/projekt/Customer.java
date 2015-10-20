@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
  * Created by Nicklas on 2015-10-14.
  */
 public class Customer {
+    private final static int PERSONNR_LENGTH_LONG = 12;
+    private final static int PERSONNR_LENGTH_SHORT = 10;
     private String personnr;
     private String name;
     private String surname;
@@ -41,16 +43,16 @@ public class Customer {
     }
 
     private void setPersonnr(String personnr){
-        if(personnr.length() == 10){
+        if(personnr.length() == PERSONNR_LENGTH_SHORT){
             String datepart = personnr.substring(0,6);
-            if(validDate(datepart, 10) && validChecksum(personnr)){
+            if(validDate(datepart, PERSONNR_LENGTH_SHORT) && validChecksum(personnr)){
                 this.personnr = personnr;
             }else{
                 throw new IllegalArgumentException("Invalid personnr.");
             }
-        }else if(personnr.length() == 12){
+        }else if(personnr.length() == PERSONNR_LENGTH_LONG){
                 String datepart = personnr.substring(0,8);
-                if(validDate(datepart,12) && validChecksum(personnr)){
+                if(validDate(datepart,PERSONNR_LENGTH_LONG) && validChecksum(personnr)){
                     this.personnr = personnr;
                 }else{
                     throw new IllegalArgumentException("Invalid personnr.");
