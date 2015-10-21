@@ -7,3 +7,4 @@ INTEProject.iml
 .DS_Store
 .project
 /JavaProject1/
+*.properties
