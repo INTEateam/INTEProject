@@ -65,8 +65,8 @@ public class TestDiscountOnAllProducts {
     public void testGetDiscountSum() throws Exception {
         DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(0.10));
         assertEquals(true, doap.checkDiscount(p, true));
-        
-        assertEquals(new BigDecimal(30.00).setScale(2), doap.getDiscountSum());
+
+        assertEquals(new BigDecimal(30.00).setScale(2), doap.getDiscountSum(p));
     }
 
     /**
@@ -77,7 +77,7 @@ public class TestDiscountOnAllProducts {
         DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(0.10));
         assertEquals(true, doap.checkDiscount(p, true));
 
-        assertTrue(p.equals(doap.getAffectedProducts()));
+        assertTrue(p.equals(doap.getAffectedProducts(p)));
 
     }
 

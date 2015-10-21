@@ -17,22 +17,22 @@ public class DiscountOneForFree implements DiscountInterface {
 	}
 
 	@Override
-    public boolean checkDiscount(List<Product> allProducts, boolean isMember){
+    public boolean checkDiscount(List<Product> productsFromReceipt, boolean isMember){
 		return false;
     	
     }
 	@Override
-    public boolean checkDiscount(List<Product> allProducts){
+    public boolean checkDiscount(List<Product> productsFromReceipt){
 		return true;
     	
     }
 	@Override
-    public BigDecimal getDiscountSum(){
+    public BigDecimal getDiscountSum(List<Product> productsFromReceipt){
 		return null;
  
     }
 	@Override
-    public List<Product> getAffectedProducts(){
+    public List<Product> getAffectedProducts(List<Product> productsFromReceipt){
     	return allProducts;
     }
 

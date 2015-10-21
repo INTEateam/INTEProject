@@ -31,7 +31,7 @@ public class Receipt {
         BigDecimal total = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
         for(DiscountInterface d : discounts){
             if(d.checkDiscount(products)){
-                total = total.add(d.getDiscountSum());
+                total = total.add(d.getDiscountSum(products));
             }
         }
         return total;
