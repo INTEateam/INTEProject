@@ -8,7 +8,10 @@ import java.util.List;
  */
 public interface DiscountInterface {
     boolean checkDiscount(List<Product> productsFromReceipt, boolean isMember);
+
     boolean checkDiscount(List<Product> productsFromReceipt);
+
     BigDecimal getDiscountSum(List<Product> productsFromReceipt);
+
     List<Product> getAffectedProducts(List<Product> productsFromReceipt);
 }

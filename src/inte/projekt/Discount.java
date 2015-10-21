@@ -8,7 +8,6 @@ package inte.projekt;
 import java.math.BigDecimal;
 
 /**
- *
  * @author andre
  */
 public class Discount {
@@ -54,7 +53,7 @@ public class Discount {
     }
 
     public void resetDiscountAmount() {
-        
+
         this.discountAmount = BigDecimal.ZERO;
 
     }
