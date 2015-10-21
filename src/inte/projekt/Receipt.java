@@ -10,6 +10,11 @@ import java.util.List;
 public class Receipt {
     private List<Product> products;
 
+    private ArrayList<DiscountInterface> discounts = new ArrayList<>();
+    public void setDiscountsFromDB(ArrayList<DiscountInterface> discounts){
+        this.discounts = discounts;
+    }
+
     public Receipt(){
         products = new ArrayList<>();
     }
@@ -22,13 +27,23 @@ public class Receipt {
         return products.size();
     }
 
+    private BigDecimal getTotalDiscount(){
+        BigDecimal total = new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP);
+        for(DiscountInterface d : discounts){
+            if(d.checkDiscount(products)){
+                total = total.add(d.getDiscountSum());
+            }
+        }
+        return total;
+    }
+
 
     public BigDecimal getPriceSum() {
         BigDecimal sum = new BigDecimal(0);
         for(Product p : products){
             sum = sum.add(p.getPrice());
         }
-        return sum;
+        return sum.subtract(getTotalDiscount());
     }
 
     public List getProductList(){

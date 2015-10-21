@@ -31,14 +31,14 @@ public class TestReceipt {
 
     @Test
     public void testPriceSum(){
-        assertEquals(new BigDecimal(10),r.getPriceSum());
+        assertEquals(new BigDecimal(10).setScale(2, BigDecimal.ROUND_HALF_UP),r.getPriceSum());
     }
 
     @Test
     public void testPriceSumAddProduct(){
         r.getPriceSum();
         r.addProduct(new Product(3, new BigDecimal(5),"Produkt 3", "Typ 1"));
-        assertEquals(new BigDecimal(15), r.getPriceSum());
+        assertEquals(new BigDecimal(15).setScale(2, BigDecimal.ROUND_HALF_UP), r.getPriceSum());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class TestReceipt {
     public void testPriceSumRemoveProduct(){
         r.getPriceSum();
         r.removeProduct(1);
-        assertEquals(new BigDecimal(7), r.getPriceSum());
+        assertEquals(new BigDecimal(7.00).setScale(2, BigDecimal.ROUND_HALF_UP), r.getPriceSum());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TestReceipt {
         Discount d = new Discount(new BigDecimal(0.2), p);
         p.price = d.getPriceWithDiscount();
         r.addProduct(p);
-        assertEquals(new BigDecimal(18),r.getPriceSum());
+        assertEquals(new BigDecimal(18).setScale(2, BigDecimal.ROUND_HALF_UP),r.getPriceSum());
         
     }
      @Test
@@ -111,9 +111,11 @@ public class TestReceipt {
         Discount d1 = new Discount(new BigDecimal(0.5), p1);
         p1.price = d1.getPriceWithDiscount();
         r.addProduct(p1);
-        assertEquals(new BigDecimal(28),r.getPriceSum());
+        assertEquals(new BigDecimal(28).setScale(2, BigDecimal.ROUND_HALF_UP),r.getPriceSum());
         
     }
+
+
 
 
 
