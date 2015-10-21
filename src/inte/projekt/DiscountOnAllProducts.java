@@ -7,7 +7,6 @@ import java.util.List;
  * Created by Nicklas on 2015-10-21.
  */
 public class DiscountOnAllProducts implements DiscountInterface {
-    private List<Product> allProducts;
     private BigDecimal discountAmount;
     private boolean onlyMembers;
 
@@ -24,7 +23,6 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
     @Override
     public boolean checkDiscount(List<Product> allProducts, boolean isMember) {
-        this.allProducts = allProducts;
         if (onlyMembers) {
             if (isMember) {
                 return true;
@@ -38,7 +36,6 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
     @Override
     public boolean checkDiscount(List<Product> allProducts) {
-        this.allProducts = allProducts;
         if (onlyMembers) {
             return false;
         } else {
@@ -47,10 +44,10 @@ public class DiscountOnAllProducts implements DiscountInterface {
     }
 
     @Override
-    public BigDecimal getDiscountSum() {
-        if (checkDiscount(allProducts)) {
+    public BigDecimal getDiscountSum(List<Product> productsFromReceipt) {
+        if (checkDiscount(productsFromReceipt)) {
             BigDecimal sum = new BigDecimal(0);
-            for (Product p : allProducts) {
+            for (Product p : productsFromReceipt) {
 
                 sum = sum.add(p.getPrice());
             }
@@ -61,7 +58,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
     }
 
     @Override
-    public List<Product> getAffectedProducts() {
-        return allProducts;
+    public List<Product> getAffectedProducts(List<Product> productsFromReceipt) {
+        return productsFromReceipt;
     }
 }

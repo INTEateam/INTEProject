@@ -29,7 +29,7 @@ public class TestDiscountOnProduct {
 		int a=2;
 		BigDecimal bd= new BigDecimal(0.3);
 		don=new DiscountOnProduct(a,bd,p);
-		assertEquals(new BigDecimal(70), don.getDiscountSum());
+		assertEquals(new BigDecimal(70), don.getDiscountSum(p));
 		
 	}
 	@Test 
@@ -37,14 +37,14 @@ public class TestDiscountOnProduct {
 		int a=2;
 		BigDecimal bd= new BigDecimal(0.3);
 		don=new DiscountOnProduct(a,bd,p);
-		assertEquals(new BigDecimal(70), don.getDiscountSum());
+		assertEquals(new BigDecimal(70), don.getDiscountSum(p));
 		
 	}
 	
     @Test (expected = IllegalArgumentException.class)
     public void testNegativeDiscount(){        
         DiscountOnProduct d = new DiscountOnProduct(2,new BigDecimal(-0.2),p);
-        assertTrue(d.getDiscountSum().compareTo(BigDecimal.ZERO) > 0);
+        assertTrue(d.getDiscountSum(p).compareTo(BigDecimal.ZERO) > 0);
         
         
       
@@ -52,7 +52,7 @@ public class TestDiscountOnProduct {
     @Test (expected = IllegalArgumentException.class)
     public void testMaxDiscount(){        
         DiscountOnProduct d = new DiscountOnProduct(2,new BigDecimal(2),p);
-        assertTrue(d.getDiscountSum().compareTo(new BigDecimal(0.7)) >= 0);
+        assertTrue(d.getDiscountSum(p).compareTo(new BigDecimal(0.7)) >= 0);
         
         
       
