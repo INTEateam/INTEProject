@@ -37,7 +37,6 @@ public class DiscountOnProduct implements DiscountInterface {
 			            temp = p.getPrice().multiply(this.discountAmount);
 			            return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
 			        }
-			
 			}
 		return null;
 

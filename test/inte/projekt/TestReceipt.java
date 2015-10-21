@@ -112,7 +112,6 @@ public class TestReceipt {
         p1.price = d1.getPriceWithDiscount();
         r.addProduct(p1);
         assertEquals(new BigDecimal(28).setScale(2, BigDecimal.ROUND_HALF_UP),r.getPriceSum());
-        
     }
 
 
