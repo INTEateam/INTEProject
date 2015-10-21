@@ -6,8 +6,6 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 
 /**
  *
@@ -15,10 +13,11 @@ import java.math.RoundingMode;
  */
 public class Discount {
 
-    Product p;
-    BigDecimal discountAmount;
+    private Product p;
+    private BigDecimal discountAmount;
 
     public Discount(BigDecimal discountAmount, Product p) {
+        // Discount max 70% min 0%
         if (discountAmount.compareTo(BigDecimal.ZERO) > 0 && discountAmount.compareTo(new BigDecimal(0.7)) <= 0) {
             this.discountAmount = new BigDecimal(1).subtract(discountAmount);
             this.p = p;
@@ -29,23 +28,34 @@ public class Discount {
 
     }
 
-
     public BigDecimal getPriceWithDiscount() {
-    	BigDecimal temp;
-		temp = p.getPrice().multiply(this.discountAmount);
-		return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
-    	
-      
+        BigDecimal temp;
+
+        if (discountAmount.equals(BigDecimal.ZERO)) {
+            return p.getPrice();
+        } else {
+            temp = p.getPrice().multiply(this.discountAmount);
+            return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+        }
+
     }
 
     public BigDecimal getDiscountAmount() {
-
         return discountAmount;
     }
 
     public void setDiscountAmount(BigDecimal discountAmount) {
+        if (discountAmount.equals(BigDecimal.ZERO)) {
+            this.discountAmount = BigDecimal.ZERO; //TODO Test, line never run
+        } else {
+            this.discountAmount = new BigDecimal(1).subtract(discountAmount);
+        }
 
-        this.discountAmount = new BigDecimal(1).subtract(discountAmount);
+    }
+
+    public void resetDiscountAmount() {
+        
+        this.discountAmount = BigDecimal.ZERO;
 
     }
 

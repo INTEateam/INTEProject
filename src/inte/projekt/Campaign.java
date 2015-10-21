@@ -1,33 +1,62 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Campaign {
 
-	Receipt r;
-	BigDecimal totalDiscount;
+    private Receipt r;
+    private BigDecimal totalDiscount;
 
-	public Campaign(Receipt r, BigDecimal totalDiscount) {
-		if (totalDiscount.compareTo(BigDecimal.ZERO) > 0
-				&& totalDiscount.compareTo(new BigDecimal(0.5)) <= 0) {
-			this.totalDiscount = new BigDecimal(1).subtract(totalDiscount);
-			this.r = r;
+    public Campaign(Receipt r) {
 
-		} else {
-			throw new IllegalArgumentException("ken dum jävel");
-		}
+        this.r = r;
 
-	}
+    }
 
-	public BigDecimal getTotalDiscount() {
-		return totalDiscount;
-	}
+    public BigDecimal getTotalDiscount() {
+        return totalDiscount;
+    }
 
-	public BigDecimal getPriceByDiscount() {
-		BigDecimal temp;
-		temp = r.getPriceSum().multiply(totalDiscount);
-		return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+    public BigDecimal getPriceByDiscount() {
+        BigDecimal temp;
+        temp = r.getPriceSum().multiply(totalDiscount);
+        return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
 
-	}
+    }
 
+    @SuppressWarnings("unchecked")
+    public void setThreeForTwoDiscount(int id) {
+
+        int counter = 0;
+
+        //TODO generic class
+        List<Product> products = r.getProductList();
+
+        for (Product product : products) {
+
+            if (id == product.getId()) {
+                counter = counter + 1;
+
+            }
+
+        }
+        if (counter == 3) {
+            r.removeProduct(id);
+
+        }
+
+    }
+
+    public void setPercentageDiscount(BigDecimal discountAmount) {
+        if (discountAmount.compareTo(BigDecimal.ZERO) > 0
+                && discountAmount.compareTo(new BigDecimal(0.5)) <= 0) {
+            discountAmount = new BigDecimal(1).subtract(discountAmount);
+            this.totalDiscount = discountAmount;
+
+        } else {
+            throw new IllegalArgumentException();
+        }
+
+    }
 }

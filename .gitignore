@@ -2,3 +2,8 @@
 *.class
 INTEProject.iml
 /bin/
+/out/
+.classpath
+.DS_Store
+.project
+/JavaProject1/
