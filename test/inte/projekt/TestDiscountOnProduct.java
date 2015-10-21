@@ -11,48 +11,46 @@ import org.junit.Test;
 
 public class TestDiscountOnProduct {
 	private DiscountOnProduct don;
-	private List<Product> p = new ArrayList<Product>();
-
+	private Receipt r = new Receipt();
+	
+	
 	@Before
 	public void initialize() {
 
 		Product p1 = new Product(2, new BigDecimal(100), "bread", "sweetbread");
 		Product p2 = new Product(1, new BigDecimal(100), "br2ead", "sweetbread");
 		Product p3 = new Product(2, new BigDecimal(100), "2hdsf", "sweetbread");
-		p.add(p1);
-		p.add(p2);
-		p.add(p3);
+		r.addProduct(p1);
+		r.addProduct(p2);
+		r.addProduct(p3);
 	}
 
 	@Test
 	public void getDiscountProductSum() {
-		int a=2;
-		BigDecimal bd= new BigDecimal(0.3);
-		don=new DiscountOnProduct(a,bd,p);
-		assertEquals(new BigDecimal(70), don.getDiscountSum(p));
+		don=new DiscountOnProduct(2,new BigDecimal(0.3));
+	
+		assertEquals(new BigDecimal(30), don.getDiscountSum(r.getProductList()));
 		
 	}
 	@Test 
 	public void twoProductDiscountOnOneProduct(){
-		int a=2;
-		BigDecimal bd= new BigDecimal(0.3);
-		don=new DiscountOnProduct(a,bd,p);
-		assertEquals(new BigDecimal(70), don.getDiscountSum(p));
+		don=new DiscountOnProduct(2,new BigDecimal(0.5));
+		assertEquals(new BigDecimal(50), don.getDiscountSum(r.getProductList()));
 		
 	}
 	
     @Test (expected = IllegalArgumentException.class)
     public void testNegativeDiscount(){        
-        DiscountOnProduct d = new DiscountOnProduct(2,new BigDecimal(-0.2),p);
-        assertTrue(d.getDiscountSum(p).compareTo(BigDecimal.ZERO) > 0);
+        DiscountOnProduct d = new DiscountOnProduct(2,new BigDecimal(-0.2));
+        assertTrue(d.getDiscountSum(r.getProductList()).compareTo(BigDecimal.ZERO) > 0);
         
         
       
     }
     @Test (expected = IllegalArgumentException.class)
     public void testMaxDiscount(){        
-        DiscountOnProduct d = new DiscountOnProduct(2,new BigDecimal(2),p);
-        assertTrue(d.getDiscountSum(p).compareTo(new BigDecimal(0.7)) >= 0);
+        DiscountOnProduct d = new DiscountOnProduct(2,new BigDecimal(2));
+        assertTrue(d.getDiscountSum(r.getProductList()).compareTo(new BigDecimal(0.7)) >= 0);
         
         
       
