@@ -17,6 +17,7 @@ public class Discount {
     private BigDecimal discountAmount;
 
     public Discount(BigDecimal discountAmount, Product p) {
+        // Discount max 70% min 0%
         if (discountAmount.compareTo(BigDecimal.ZERO) > 0 && discountAmount.compareTo(new BigDecimal(0.7)) <= 0) {
             this.discountAmount = new BigDecimal(1).subtract(discountAmount);
             this.p = p;
@@ -40,7 +41,6 @@ public class Discount {
     }
 
     public BigDecimal getDiscountAmount() {
-
         return discountAmount;
     }
 

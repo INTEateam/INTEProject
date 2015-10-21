@@ -159,7 +159,7 @@ public class Customer {
             SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
             sdf.setLenient(false);
             try{
-                sdf.parse(dateToCheck); //TODO is the Date object needed?
+                sdf.parse(dateToCheck);
             }catch (ParseException e){
                 return false;
             }
@@ -168,7 +168,7 @@ public class Customer {
             sdf.setLenient(false);
             Date today = new Date();
             try{
-                Date date = sdf.parse(dateToCheck); //TODO is the Date object needed?
+                Date date = sdf.parse(dateToCheck);
                 if(date.after(today)){
                     throw new IllegalArgumentException("Date of birth cannot specify a future date.");
                 }
