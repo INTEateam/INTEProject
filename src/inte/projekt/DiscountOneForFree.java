@@ -39,4 +39,9 @@ public class DiscountOneForFree implements DiscountInterface {
         return allProducts;
     }
 
+    @Override
+    public int getID() {
+        return 0;
+    }
+
 }

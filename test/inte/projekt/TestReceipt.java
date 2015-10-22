@@ -114,9 +114,9 @@ public class TestReceipt {
         assertEquals(new BigDecimal(28).setScale(2, BigDecimal.ROUND_HALF_UP),r.getPriceSum());
     }
 
-
-
-
-
+    @Test
+    public void testToString(){
+        r.toString();
+    }
 
 }

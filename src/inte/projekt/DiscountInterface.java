@@ -14,4 +14,6 @@ public interface DiscountInterface {
     BigDecimal getDiscountSum(List<Product> productsFromReceipt);
 
     List<Product> getAffectedProducts(List<Product> productsFromReceipt);
+
+    int getID();
 }

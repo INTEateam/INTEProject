@@ -50,4 +50,9 @@ public class DiscountOnProduct implements DiscountInterface {
         return productsFromReceipt;
     }
 
+    @Override
+    public int getID() {
+        return 0;
+    }
+
 }

@@ -61,4 +61,11 @@ public class DiscountOnAllProducts implements DiscountInterface {
     public List<Product> getAffectedProducts(List<Product> productsFromReceipt) {
         return productsFromReceipt;
     }
+
+    @Override
+    public int getID() {
+        return 0;
+    }
+
+
 }
