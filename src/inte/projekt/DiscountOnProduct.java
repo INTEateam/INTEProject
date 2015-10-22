@@ -69,4 +69,9 @@ public class DiscountOnProduct implements DiscountInterface {
         return null;
     }
 
+    @Override
+    public BigDecimal getDiscountAmount() {
+        return null;
+    }
+
 }

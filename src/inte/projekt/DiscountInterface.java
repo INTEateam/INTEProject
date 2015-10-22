@@ -16,4 +16,6 @@ public interface DiscountInterface {
     List<Product> getAffectedProducts(List<Product> productsFromReceipt);
 
     String getID();
+
+    BigDecimal getDiscountAmount();
 }

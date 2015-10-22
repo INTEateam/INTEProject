@@ -33,7 +33,7 @@ public class DiscountOnCategory implements DiscountInterface {
         BigDecimal sum = BigDecimal.ZERO;
         for (Product p : productsFromReceipt) {
             if (p.getCategory().equals(category)) {
-                sum = sum.add(getAmount());
+                sum = sum.add(getDiscountAmount());
             }
         }
         return sum;
@@ -49,7 +49,12 @@ public class DiscountOnCategory implements DiscountInterface {
         return category;
     }
 
-    public BigDecimal getAmount() {
+    @Override
+    public BigDecimal getDiscountAmount() {
         return amount;
+    }
+
+    public String toString(){
+        return getID() + "\t" + getDiscountAmount() + "kr\n";
     }
 }

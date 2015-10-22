@@ -59,5 +59,10 @@ public class DiscountOneForFree implements DiscountInterface {
         return null;
     }
 
+    @Override
+    public BigDecimal getDiscountAmount() {
+        return null;
+    }
+
 
 }
