@@ -9,6 +9,7 @@ import java.util.List;
 public class DiscountOnAllProducts implements DiscountInterface {
     private BigDecimal discountAmount;
     private boolean onlyMembers;
+    final private String DISCOUNTNAME = "Sales discount";
 
 
     public DiscountOnAllProducts(BigDecimal decimalPercent, boolean onlyMembers) {
@@ -51,7 +52,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
                 sum = sum.add(p.getPrice());
             }
-            sum = sum.multiply(this.discountAmount);
+            sum = sum.multiply(this.discountAmount).divide(new BigDecimal(100));
             return sum;
         }
         return new BigDecimal(0);
@@ -61,4 +62,20 @@ public class DiscountOnAllProducts implements DiscountInterface {
     public List<Product> getAffectedProducts(List<Product> productsFromReceipt) {
         return productsFromReceipt;
     }
+
+    @Override
+    public String getID() {
+        return DISCOUNTNAME;
+    }
+
+    @Override
+    public BigDecimal getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public String toString(){
+        return getID() + "\t" + getDiscountAmount() + "%\n";
+    }
+
+
 }

@@ -54,4 +54,15 @@ public class DiscountOneForFree implements DiscountInterface {
         return allProducts;
     }
 
+    @Override
+    public String getID() {
+        return null;
+    }
+
+    @Override
+    public BigDecimal getDiscountAmount() {
+        return null;
+    }
+
+
 }

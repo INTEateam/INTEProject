@@ -239,4 +239,10 @@ public class TestCustomer {
         new Customer("208112189876","Namn","Efternamn",true);
     }
 
+    @Test
+    public void testToString(){
+        Customer c = new Customer("8112189876","Namn","Efternamn","Gata","nr","12368",true);
+        assertEquals("\nNamn Efternamn\nGata nr\n12368\n",c.toString());
+    }
+
 }
