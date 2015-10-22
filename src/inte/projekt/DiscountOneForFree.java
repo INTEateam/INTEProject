@@ -7,12 +7,12 @@ public class DiscountOneForFree implements DiscountInterface {
     private List<Product> allProducts;
     private int numberOfProducts;
     private int numberOfProductsToPay;
-    private Product p;
+    private int id;
 
-    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, Product p) {
+    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int id) {
         this.numberOfProducts = numberOfProducts;
         this.numberOfProductsToPay = numberOfProductsToPay;
-        this.p = p;
+        this.id = id;
 
     }
 
@@ -30,7 +30,22 @@ public class DiscountOneForFree implements DiscountInterface {
 
     @Override
     public BigDecimal getDiscountSum(List<Product> productsFromReceipt) {
-        return null;
+    	int temp=0;
+    	BigDecimal tempValue = new BigDecimal(0);
+    	for(Product p:productsFromReceipt){
+    		if(p.getId()==id){
+    			temp++;
+    			if(temp==numberOfProducts){
+    				temp=0;
+    				tempValue= tempValue.add(p.getPrice().multiply((new BigDecimal(numberOfProducts-numberOfProductsToPay))));
+    				
+    			}
+    		}
+    		
+    	}
+    		
+        return tempValue;
+        
 
     }
 
