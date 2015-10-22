@@ -56,7 +56,7 @@ public class TestCampaign {
     public void testThreeForTwo() {
         c = new Campaign(r);
         c.setThreeForTwoDiscount(1);
-        assertEquals(new BigDecimal(10), r.getPriceSum());
+        assertEquals(new BigDecimal(10).setScale(2, BigDecimal.ROUND_HALF_UP), r.getPriceSum());
     }
 
 }

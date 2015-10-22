@@ -58,8 +58,7 @@ public class TestDiscount {
         d = new Discount(new BigDecimal(0.71),p);
         assertTrue(d.getDiscountAmount().compareTo(new BigDecimal(0.7)) >= 0);
         
-        
-      
+ 
     }
     @Test
     public void testDiscountAmount(){
