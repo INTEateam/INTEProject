@@ -17,7 +17,7 @@ public class TestProductPrice {
     @Test
     public void testValidPrice() {
         Product p = new Product(VALID_ID, new BigDecimal(10), VALID_NAME, VALID_CATEGORY);
-        assertEquals(new BigDecimal(10), p.getPrice());
+        assertEquals(new BigDecimal(10.00).setScale(2), p.getPrice());
     }
 
     @Test
@@ -48,6 +48,18 @@ public class TestProductPrice {
     public void testPricewithTooManyDecimals() {
         Product p = new Product(VALID_ID, new BigDecimal("39.9876").setScale(4, RoundingMode.HALF_UP), VALID_NAME, VALID_CATEGORY);
         assertEquals(new BigDecimal("39.9876").setScale(4, RoundingMode.HALF_UP), p.getPrice());
+    }
+
+    @Test
+    public void testPriceWithAmountUnder1(){
+        Product p = new Product(VALID_ID, new BigDecimal(15), VALID_NAME, VALID_CATEGORY, new BigDecimal(0.5));
+        assertEquals(new BigDecimal(7.50).setScale(2),p.getPrice());
+    }
+
+    @Test
+    public void testPriceWithAmountOver1(){
+        Product p = new Product(VALID_ID, new BigDecimal(10), VALID_NAME, VALID_CATEGORY, new BigDecimal(1.5));
+        assertEquals(new BigDecimal(15.00).setScale(2),p.getPrice());
     }
 
 }

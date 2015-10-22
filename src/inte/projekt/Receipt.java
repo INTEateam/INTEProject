@@ -38,7 +38,7 @@ public class Receipt {
                 total = total.add(d.getDiscountSum(products));
             }
         }
-        return total;
+        return total.setScale(2,BigDecimal.ROUND_HALF_UP);
     }
 
 
@@ -47,7 +47,7 @@ public class Receipt {
         for (Product p : products) {
             sum = sum.add(p.getPrice());
         }
-        return sum.subtract(getTotalDiscount());
+        return sum.subtract(getTotalDiscount()).setScale(2,BigDecimal.ROUND_HALF_UP);
     }
 
     public List getProductList() {

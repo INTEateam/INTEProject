@@ -12,7 +12,9 @@ public class random {
         Product p4 = new Product(1231,new BigDecimal(699),"Moses Hairtrimmer Procut","Personal Hygiene");
         Product p5 = new Product(4564,new BigDecimal(999),"Explorer Parka","Jackets");
         Product p6 = new Product(7897,new BigDecimal(799),"Blizzard Jacket","Jackets");
-        // Total value: 10 945kr
+        Product p7 = new Product(7946,new BigDecimal(15),"Banan","Frukt",new BigDecimal(0.3));
+
+        // Total value: 10 949kr
 
 
         Receipt r = new Receipt();
@@ -22,6 +24,7 @@ public class random {
         r.addProduct(p4);
         r.addProduct(p5);
         r.addProduct(p6);
+        r.addProduct(p7);
 
         Customer c = new Customer("9001013318","Frodo","Baggins","Bag End","1","12345",true);
         r.setCustomer(c);

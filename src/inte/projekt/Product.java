@@ -10,6 +10,7 @@ public class Product {
     private int id;
     private String name;
     private String category;
+    private BigDecimal amount = new BigDecimal(1);
 
     public Product(int id, BigDecimal price, String name, String category) {
 
@@ -19,9 +20,19 @@ public class Product {
         setCategory(category);
     }
 
+
+    public Product(int id, BigDecimal price, String name, String category,BigDecimal amount) {
+
+        setId(id);
+        setPrice(price);
+        setName(name);
+        setCategory(category);
+        this.amount = amount;
+    }
+
     public BigDecimal getPrice() {
 
-        return price;
+        return price.multiply(amount).setScale(2,BigDecimal.ROUND_HALF_UP);
 
     }
 
