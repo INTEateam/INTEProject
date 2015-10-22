@@ -15,5 +15,5 @@ public interface DiscountInterface {
 
     List<Product> getAffectedProducts(List<Product> productsFromReceipt);
 
-    int getID();
+    String getID();
 }

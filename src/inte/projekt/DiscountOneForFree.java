@@ -40,8 +40,9 @@ public class DiscountOneForFree implements DiscountInterface {
     }
 
     @Override
-    public int getID() {
-        return 0;
+    public String getID() {
+        return null;
     }
+
 
 }

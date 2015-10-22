@@ -45,15 +45,11 @@ public class DiscountOnCategory implements DiscountInterface {
     }
 
     @Override
-    public int getID() {
-        return 0;
+    public String getID() {
+        return category;
     }
 
     public BigDecimal getAmount() {
         return amount;
-    }
-
-    public String toString(){
-        return category;
     }
 }

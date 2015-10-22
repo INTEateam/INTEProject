@@ -76,11 +76,11 @@ public class Receipt {
         receipt += "\n\nAPPLIED DISCOUNTS\n";
         for(int i = 0; i < discounts.size(); i++){
             if(discounts.get(i).checkDiscount(products)){
-                receipt += discounts.get(i).toString()+"\n";
+                receipt += discounts.get(i).getID()+"\n";
             }
         }
         receipt += "----------------------";
-        receipt += "\n" + "Discount Total: " + getTotalDiscount() + "kr";
+        receipt += "\n" + "Total: " + getTotalDiscount() + "kr";
 
         return receipt;
     }
