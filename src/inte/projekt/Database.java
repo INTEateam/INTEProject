@@ -9,7 +9,7 @@ public class Database {
     ArrayList<Product> allProducts;
     ArrayList<DiscountInterface> allDiscount;
 
-    Database(){
+    Database() {
         this.allDiscount = new ArrayList<>();
         this.allProducts = new ArrayList<>();
     }
