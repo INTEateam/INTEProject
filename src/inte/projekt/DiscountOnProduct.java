@@ -33,14 +33,14 @@ public class DiscountOnProduct implements DiscountInterface {
 
     @Override
     public BigDecimal getDiscountSum(List<Product> productsFromReceipt) {
-        BigDecimal temp;
+        BigDecimal temp= new BigDecimal(0);
         for (Product p : productsFromReceipt) {
             if (p.getId() == id) {
-                temp = p.getPrice().multiply(this.discountProcentage);
-                return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+                temp = temp.add(p.getPrice().multiply(this.discountProcentage));
+                
             }
         }
-        return null;
+        return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
 
 
     }
@@ -48,6 +48,20 @@ public class DiscountOnProduct implements DiscountInterface {
     @Override
     public List<Product> getAffectedProducts(List<Product> productsFromReceipt) {
         return productsFromReceipt;
+    }
+    public BigDecimal getPriceWithDiscount(List<Product> productsFromReceipt) {
+        BigDecimal temp;
+        for (Product p : productsFromReceipt) {
+           if (discountProcentage.equals(BigDecimal.ZERO)) {
+            return p.getPrice();
+        } else {
+            temp = BigDecimal.ONE.subtract(this.discountProcentage);
+            temp = p.getPrice().multiply(temp);
+            return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+        } 
+        }
+        
+        return null;
     }
 
 }

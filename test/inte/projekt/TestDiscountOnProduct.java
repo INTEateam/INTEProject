@@ -28,14 +28,13 @@ public class TestDiscountOnProduct {
 	@Test
 	public void getDiscountProductSum() {
 		don=new DiscountOnProduct(2,new BigDecimal(0.3));
-	
-		assertEquals(new BigDecimal(30), don.getDiscountSum(r.getProductList()));
+		assertEquals(new BigDecimal(60), don.getDiscountSum(r.getProductList()));
 		
 	}
 	@Test 
 	public void twoProductDiscountOnOneProduct(){
 		don=new DiscountOnProduct(2,new BigDecimal(0.5));
-		assertEquals(new BigDecimal(50), don.getDiscountSum(r.getProductList()));
+		assertEquals(new BigDecimal(100), don.getDiscountSum(r.getProductList()));
 		
 	}
 	
