@@ -201,11 +201,11 @@ public class Customer {
         return (s1 + s2) % 10 == 0;
     }
 
-    public String toString(){
+    public String toString() {
         String s = "\n";
-        s += getFullName()+"\n";
-        s += getFullAddress()+"\n";
-        s += getZipcode()+"\n";
+        s += getFullName() + "\n";
+        s += getFullAddress() + "\n";
+        s += getZipcode() + "\n";
         return s;
     }
 

@@ -8,7 +8,7 @@ public class DiscountOnCategory implements DiscountInterface {
     private String category;
     private BigDecimal amount = BigDecimal.ZERO;
 
-    public DiscountOnCategory(String category, BigDecimal amount){
+    public DiscountOnCategory(String category, BigDecimal amount) {
         this.category = category;
         this.amount = amount;
     }
@@ -20,8 +20,8 @@ public class DiscountOnCategory implements DiscountInterface {
 
     @Override
     public boolean checkDiscount(List<Product> productsFromReceipt) {
-        for(Product p : productsFromReceipt){
-            if(p.getCategory().equals(category)){
+        for (Product p : productsFromReceipt) {
+            if (p.getCategory().equals(category)) {
                 return true;
             }
         }
@@ -54,7 +54,7 @@ public class DiscountOnCategory implements DiscountInterface {
         return amount;
     }
 
-    public String toString(){
+    public String toString() {
         return getID() + "\t" + getDiscountAmount() + "kr\n";
     }
 }

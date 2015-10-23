@@ -30,22 +30,22 @@ public class DiscountOneForFree implements DiscountInterface {
 
     @Override
     public BigDecimal getDiscountSum(List<Product> productsFromReceipt) {
-    	int temp=0;
-    	BigDecimal tempValue = new BigDecimal(0);
-    	for(Product p:productsFromReceipt){
-    		if(p.getId()==id){
-    			temp++;
-    			if(temp==numberOfProducts){
-    				temp=0;
-    				tempValue= tempValue.add(p.getPrice().multiply((new BigDecimal(numberOfProducts-numberOfProductsToPay))));
-    				
-    			}
-    		}
-    		
-    	}
-    		
+        int temp = 0;
+        BigDecimal tempValue = new BigDecimal(0);
+        for (Product p : productsFromReceipt) {
+            if (p.getId() == id) {
+                temp++;
+                if (temp == numberOfProducts) {
+                    temp = 0;
+                    tempValue = tempValue.add(p.getPrice().multiply((new BigDecimal(numberOfProducts - numberOfProductsToPay))));
+
+                }
+            }
+
+        }
+
         return tempValue;
-        
+
 
     }
 

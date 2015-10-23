@@ -7,9 +7,9 @@ import java.util.List;
  * Created by Nicklas on 2015-10-21.
  */
 public class DiscountOnAllProducts implements DiscountInterface {
+    final private String DISCOUNTNAME = "Sales discount";
     private BigDecimal discountAmount;
     private boolean onlyMembers;
-    final private String DISCOUNTNAME = "Sales discount";
 
 
     public DiscountOnAllProducts(BigDecimal decimalPercent, boolean onlyMembers) {
@@ -25,11 +25,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
     @Override
     public boolean checkDiscount(List<Product> allProducts, boolean isMember) {
         if (onlyMembers) {
-            if (isMember) {
-                return true;
-            } else {
-                return false;
-            }
+            return isMember;
         } else {
             return true;
         }
@@ -37,11 +33,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
     @Override
     public boolean checkDiscount(List<Product> allProducts) {
-        if (onlyMembers) {
-            return false;
-        } else {
-            return true;
-        }
+        return !onlyMembers;
     }
 
     @Override
@@ -73,7 +65,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
         return discountAmount;
     }
 
-    public String toString(){
+    public String toString() {
         return getID() + "\t" + getDiscountAmount() + "%\n";
     }
 
