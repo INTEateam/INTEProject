@@ -15,8 +15,7 @@ public class TestProductCategory {
 
     @Test
     public void testSimpleCategory() {
-        Product p = new Product(VALID_ID, VALID_PRICE, VALID_NAME,
-                "Household products");
+        Product p = new Product(VALID_ID, VALID_PRICE, VALID_NAME, "Household products");
         assertEquals("Household products", p.getCategory());
     }
 

@@ -84,7 +84,7 @@ public class TestDiscountOnAllProducts {
     @Test
     public void testNoProductsWithDiscount(){
         DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(0.10));
-        assertEquals(BigDecimal.ZERO.setScale(2), doap.getDiscountSum(new ArrayList<>()));
+        assertEquals(BigDecimal.ZERO.setScale(2), doap.getDiscountSum(new ArrayList<>())); 
     }
 
     @Test

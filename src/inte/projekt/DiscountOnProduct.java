@@ -1,6 +1,7 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class DiscountOnProduct implements DiscountInterface {
         this(productId, discountPercentage, false);
     }
 
-    public DiscountOnProduct(int productId, BigDecimal discountPercentage, boolean onlyMembers) {
-        if (discountPercentage.compareTo(BigDecimal.ZERO) > 0 && discountPercentage.compareTo(new BigDecimal(0.7)) <= 0) {
+    public DiscountOnProduct(int productId, BigDecimal discountPercentage, boolean onlyMembers) {				 // Added scale and RoundingMode for precision 
+        if (discountPercentage.compareTo(BigDecimal.ZERO) > 0 && discountPercentage.compareTo(new BigDecimal(0.7).setScale(2, BigDecimal.ROUND_HALF_UP)) <= 0) {
             this.discountPercentage = discountPercentage;
             this.productId = productId;
             this.onlyMembers = onlyMembers;
