@@ -1,19 +1,25 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DiscountOnProduct implements DiscountInterface {
-    private String id;
+    private String DISCOUNT_ID = "Discount on Product";
     private int productId;
-    private BigDecimal discountProcentage;
+    private BigDecimal discountPercentage;
+    private boolean onlyMembers;
 
 
-    public DiscountOnProduct(String id, int productId, BigDecimal discountProcentage) {
-        if (discountProcentage.compareTo(BigDecimal.ZERO) > 0 && discountProcentage.compareTo(new BigDecimal(0.7)) <= 0) {
-            this.discountProcentage = discountProcentage;
+    public DiscountOnProduct(int productId, BigDecimal discountPercentage) {
+        this(productId, discountPercentage, false);
+    }
+
+    public DiscountOnProduct(int productId, BigDecimal discountPercentage, boolean onlyMembers) {
+        if (discountPercentage.compareTo(BigDecimal.ZERO) > 0 && discountPercentage.compareTo(new BigDecimal(0.7)) <= 0) {
+            this.discountPercentage = discountPercentage;
             this.productId = productId;
-            this.id = id;
+            this.onlyMembers = onlyMembers;
         } else {
             throw new IllegalArgumentException("ken dum jävel");
         }
@@ -22,14 +28,32 @@ public class DiscountOnProduct implements DiscountInterface {
 
     @Override
     public boolean checkDiscount(List<Product> productsFromReceipt, boolean isMember) {
-        return false;
-        //TODO
+        boolean b = false;
+        if (isMember) {
+
+            for (Product p : productsFromReceipt) {
+                if (p.getId() == productId) {
+                    b = true;
+                    break;
+                }
+            }
+
+        } else if (!onlyMembers) {
+
+            for (Product p : productsFromReceipt) {
+                if (p.getId() == productId) {
+                    b = true;
+                    break;
+                }
+            }
+
+        }
+        return b;
     }
 
     @Override
     public boolean checkDiscount(List<Product> productsFromReceipt) {
-        return true;
-        //TODO
+        return checkDiscount(productsFromReceipt, false);
     }
 
     @Override
@@ -37,7 +61,7 @@ public class DiscountOnProduct implements DiscountInterface {
         BigDecimal temp = new BigDecimal(0);
         for (Product p : productsFromReceipt) {
             if (p.getId() == productId) {
-                temp = temp.add(p.getPrice().multiply(this.discountProcentage));
+                temp = temp.add(p.getPrice().multiply(this.discountPercentage));
             }
         }
 
@@ -48,14 +72,20 @@ public class DiscountOnProduct implements DiscountInterface {
 
     @Override
     public List<Product> getAffectedProducts(List<Product> productsFromReceipt) {
-        return productsFromReceipt;
+        List<Product> l = new ArrayList<>();
+        for (Product p : productsFromReceipt) {
+            if (p.getId() == productId) {
+                l.add(p);
+            }
+        }
+        return l;
     }
 
     public BigDecimal getPriceWithDiscount(List<Product> productsFromReceipt) {
         BigDecimal temp = BigDecimal.ZERO;
         for (Product p : productsFromReceipt) {
-            if(p.getId() == productId){
-                temp = temp.add(p.getPrice().multiply(BigDecimal.ONE.subtract(this.discountProcentage)));
+            if (p.getId() == productId) {
+                temp = temp.add(p.getPrice().multiply(BigDecimal.ONE.subtract(this.discountPercentage)));
             }
         }
 
@@ -64,12 +94,12 @@ public class DiscountOnProduct implements DiscountInterface {
 
     @Override
     public String getID() {
-        return id;
+        return DISCOUNT_ID;
     }
 
     @Override
     public BigDecimal getDiscountAmount() {
-        return null;
+        return discountPercentage;
     }
 
 }

@@ -1,6 +1,7 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DiscountOnCategory implements DiscountInterface {
@@ -41,7 +42,13 @@ public class DiscountOnCategory implements DiscountInterface {
 
     @Override
     public List<Product> getAffectedProducts(List<Product> productsFromReceipt) {
-        return null;
+        List<Product> l = new ArrayList<>();
+        for (Product p : productsFromReceipt) {
+            if (p.getCategory().equals(category)) {
+                l.add(p);
+            }
+        }
+        return l;
     }
 
     @Override

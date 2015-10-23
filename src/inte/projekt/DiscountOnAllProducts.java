@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Nicklas on 2015-10-21.
  */
 public class DiscountOnAllProducts implements DiscountInterface {
-    final private String DISCOUNTNAME = "Sales discount";
+    final private String DISCOUNT_NAME = "Sales discount";
     private BigDecimal discountAmount;
     private boolean onlyMembers;
 
@@ -38,16 +38,16 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
     @Override
     public BigDecimal getDiscountSum(List<Product> productsFromReceipt) {
+        BigDecimal sum = new BigDecimal(0);
         if (checkDiscount(productsFromReceipt)) {
-            BigDecimal sum = new BigDecimal(0);
             for (Product p : productsFromReceipt) {
 
                 sum = sum.add(p.getPrice());
             }
             sum = sum.multiply(this.discountAmount).divide(new BigDecimal(100));
-            return sum;
+
         }
-        return new BigDecimal(0);
+        return sum;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
     @Override
     public String getID() {
-        return DISCOUNTNAME;
+        return DISCOUNT_NAME;
     }
 
     @Override

@@ -16,12 +16,14 @@ public class TestDiscountOnCategory {
     @Before
     public void before() throws Exception {
         Product p1 = new Product(147, new BigDecimal(30), "Barbaque Chicken", "Meat");
-        Product p2 = new Product(258, new BigDecimal(15), "Coca Cola 1L", "Beverage");
-        Product p3 = new Product(369, new BigDecimal(25), "Cheese Wheel", "Dairy");
+        Product p2 = new Product(147, new BigDecimal(30), "T-Bone", "Meat");
+        Product p3 = new Product(258, new BigDecimal(15), "Coca Cola 1L", "Beverage");
+        Product p4 = new Product(369, new BigDecimal(25), "Cheese Wheel", "Dairy");
 
         p.add(p1);
         p.add(p2);
         p.add(p3);
+        p.add(p4);
     }
 
     @Test
@@ -39,7 +41,13 @@ public class TestDiscountOnCategory {
     @Test
     public void testCheckDiscountSum() {
         DiscountOnCategory d = new DiscountOnCategory("Meat", new BigDecimal(5));
-        assertEquals(new BigDecimal(5), d.getDiscountSum(p));
+        assertEquals(new BigDecimal(10), d.getDiscountSum(p));
+    }
+
+    @Test
+    public void testGetAffectedProducts(){
+        DiscountOnCategory doc = new DiscountOnCategory("Meat", new BigDecimal(5));
+        assertEquals(2, doc.getAffectedProducts(p).size());
     }
 
 }

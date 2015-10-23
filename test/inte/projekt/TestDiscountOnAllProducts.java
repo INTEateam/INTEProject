@@ -65,6 +65,7 @@ public class TestDiscountOnAllProducts {
         DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(10));
         assertEquals(true, doap.checkDiscount(p, true));
 
+        assertEquals(new BigDecimal(10).setScale(2), doap.getDiscountAmount());
         assertEquals(new BigDecimal(30.00).setScale(2), doap.getDiscountSum(p));
     }
 
@@ -80,5 +81,17 @@ public class TestDiscountOnAllProducts {
 
     }
 
+    @Test
+    public void testNoProductsWithDiscount(){
+        DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(0.10));
+        assertEquals(BigDecimal.ZERO.setScale(2), doap.getDiscountSum(new ArrayList<>()));
+    }
+
+    @Test
+    public void testToString(){
+        DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(0.10));
+        assertEquals("Sales discount" +"\t" + "0.10"  + "%" + "\n", doap.toString());
+        assertEquals("Sales discount", doap.getID());
+    }
 
 } 

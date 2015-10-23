@@ -27,21 +27,21 @@ public class TestDiscountOnProduct {
 
     @Test
     public void getDiscountProductSum() {
-        don = new DiscountOnProduct(DISCOUNT_ID, 2, new BigDecimal(0.3));
+        don = new DiscountOnProduct(2, new BigDecimal(0.3));
         assertEquals(new BigDecimal(60), don.getDiscountSum(r.getProductList()));
 
     }
 
     @Test
     public void twoProductDiscountOnOneProduct() {
-        don = new DiscountOnProduct(DISCOUNT_ID, 2, new BigDecimal(0.5));
+        don = new DiscountOnProduct(2, new BigDecimal(0.5));
         assertEquals(new BigDecimal(100), don.getDiscountSum(r.getProductList()));
 
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeDiscount() {
-        DiscountOnProduct d = new DiscountOnProduct(DISCOUNT_ID, 2, new BigDecimal(-0.2));
+        DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(-0.2));
         assertTrue(d.getDiscountSum(r.getProductList()).compareTo(BigDecimal.ZERO) > 0);
 
 
@@ -49,7 +49,7 @@ public class TestDiscountOnProduct {
 
     @Test(expected = IllegalArgumentException.class)
     public void testMaxDiscount() {
-        DiscountOnProduct d = new DiscountOnProduct(DISCOUNT_ID, 2, new BigDecimal(2));
+        DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(2));
         assertTrue(d.getDiscountSum(r.getProductList()).compareTo(new BigDecimal(0.7)) >= 0);
 
 
@@ -57,14 +57,27 @@ public class TestDiscountOnProduct {
 
     @Test
     public void testGetPriceWithDiscount(){
-        DiscountOnProduct d1 = new DiscountOnProduct(DISCOUNT_ID + "1", 1, new BigDecimal(0.2));
-        DiscountOnProduct d2 = new DiscountOnProduct(DISCOUNT_ID + "2", 2, new BigDecimal(0.3));
-        DiscountOnProduct d3 = new DiscountOnProduct(DISCOUNT_ID + "3", 3, new BigDecimal(0.4));
+        DiscountOnProduct d1 = new DiscountOnProduct(1, new BigDecimal(0.2));
+        DiscountOnProduct d2 = new DiscountOnProduct(2, new BigDecimal(0.3));
+        DiscountOnProduct d3 = new DiscountOnProduct(3, new BigDecimal(0.4));
         System.out.println(d1.getPriceWithDiscount(r.getProductList()));
         System.out.println(d2.getPriceWithDiscount(r.getProductList()));
         System.out.println(d3.getPriceWithDiscount(r.getProductList()));
 
 
+    }
+
+    @Test
+    public void testCheckDiscount(){
+        DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(.2));
+        assertTrue(d.checkDiscount(r.getProductList()));
+    }
+
+    @Test
+    public void testCheckDiscountMember(){
+        DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(.2), true);
+        assertTrue(!d.checkDiscount(r.getProductList()));
+        assertTrue(d.checkDiscount(r.getProductList(),true));
     }
 
 }

@@ -1,31 +1,57 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DiscountOneForFree implements DiscountInterface {
-    private List<Product> allProducts;
+    private String DISCOUNT_ID = "One for free";
     private int numberOfProducts;
     private int numberOfProductsToPay;
-    private int id;
+    private int affectedProductId;
+    private boolean onlyMembers;
 
-    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int id) {
+    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int affectedProductId) {
         this.numberOfProducts = numberOfProducts;
         this.numberOfProductsToPay = numberOfProductsToPay;
-        this.id = id;
+        this.affectedProductId = affectedProductId;
 
+    }
+
+    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int affectedProductId, boolean onlyMembers) {
+        this.numberOfProducts = numberOfProducts;
+        this.numberOfProductsToPay = numberOfProductsToPay;
+        this.affectedProductId = affectedProductId;
+        this.onlyMembers = onlyMembers;
     }
 
     @Override
     public boolean checkDiscount(List<Product> productsFromReceipt, boolean isMember) {
-        return false;
+        boolean valid = false;
+        if (onlyMembers) {
+            if(isMember){
+                valid = productValidForDiscountExists(productsFromReceipt);
+            }
+        }else{
+            valid = productValidForDiscountExists(productsFromReceipt);
+        }
+        return valid;
+    }
 
+    private boolean productValidForDiscountExists(List<Product> productsFromReceipt){
+        boolean b = false;
+        for (Product p : productsFromReceipt) {
+            if (p.getId() == affectedProductId) {
+                b = true;
+                break;
+            }
+        }
+        return b;
     }
 
     @Override
     public boolean checkDiscount(List<Product> productsFromReceipt) {
-        return true;
-
+        return checkDiscount(productsFromReceipt, false);
     }
 
     @Override
@@ -33,7 +59,7 @@ public class DiscountOneForFree implements DiscountInterface {
         int temp = 0;
         BigDecimal tempValue = new BigDecimal(0);
         for (Product p : productsFromReceipt) {
-            if (p.getId() == id) {
+            if (p.getId() == affectedProductId) {
                 temp++;
                 if (temp == numberOfProducts) {
                     temp = 0;
@@ -43,25 +69,28 @@ public class DiscountOneForFree implements DiscountInterface {
             }
 
         }
-
         return tempValue;
-
-
     }
 
     @Override
     public List<Product> getAffectedProducts(List<Product> productsFromReceipt) {
-        return allProducts;
+        List<Product> l = new ArrayList<>();
+        for (Product p : productsFromReceipt) {
+            if (p.getId() == affectedProductId) {
+                l.add(p);
+            }
+        }
+        return l;
     }
 
     @Override
     public String getID() {
-        return null;
+        return DISCOUNT_ID;
     }
 
     @Override
     public BigDecimal getDiscountAmount() {
-        return null;
+        return new BigDecimal(numberOfProducts);
     }
 
 

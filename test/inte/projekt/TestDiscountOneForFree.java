@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestDiscountOneForFree {
     private Receipt r = new Receipt();
@@ -41,6 +42,19 @@ public class TestDiscountOneForFree {
 
         doff= new DiscountOneForFree(3, 2, 2);
         assertEquals(new BigDecimal(200), doff.getDiscountSum(r.getProductList()));
+    }
+
+    @Test
+    public void TestCheckDiscount(){
+        DiscountOneForFree doff = new DiscountOneForFree(3, 2, 2);
+        assertTrue(doff.checkDiscount(r.getProductList()));
+    }
+
+    @Test
+    public void TestCheckDiscountMember(){
+        DiscountOneForFree doff = new DiscountOneForFree(3, 2, 2, true);
+        assertTrue(!doff.checkDiscount(r.getProductList()));
+        assertTrue(doff.checkDiscount(r.getProductList(),true));
     }
 
 }
