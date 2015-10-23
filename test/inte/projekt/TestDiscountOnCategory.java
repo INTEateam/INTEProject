@@ -25,6 +25,11 @@ public class TestDiscountOnCategory {
     }
 
     @Test
+    public void testGetDiscountSum(){
+
+    }
+
+    @Test
     public void testCheckDiscountExists(){
         DiscountOnCategory d = new DiscountOnCategory("Meat",new BigDecimal(5));
         assertEquals(true,d.checkDiscount(p));
@@ -40,6 +45,12 @@ public class TestDiscountOnCategory {
     public void testCheckDiscountSum(){
         DiscountOnCategory d = new DiscountOnCategory("Meat",new BigDecimal(5));
         assertEquals(new BigDecimal(5),d.getDiscountSum(p));
+    }
+
+    @Test
+    public void testToString(){
+        DiscountOnCategory d = new DiscountOnCategory("Meat",new BigDecimal(5));
+        assertEquals("Meat\t5kr\n",d.toString());
     }
 
 }

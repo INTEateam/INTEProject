@@ -10,7 +10,7 @@ public class Product {
     private int id;
     private String name;
     private String category;
-    private BigDecimal amount = new BigDecimal(1);
+    private BigDecimal amount = new BigDecimal(1); // Default 1, used to calculate price on products that have a price / kg
 
     public Product(int id, BigDecimal price, String name, String category) {
 

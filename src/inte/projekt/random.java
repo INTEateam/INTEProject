@@ -12,7 +12,7 @@ public class random {
         Product p4 = new Product(1231,new BigDecimal(699),"Moses Hairtrimmer Procut","Personal Hygiene");
         Product p5 = new Product(4564,new BigDecimal(999),"Explorer Parka","Jackets");
         Product p6 = new Product(7897,new BigDecimal(799),"Blizzard Jacket","Jackets");
-        Product p7 = new Product(7946,new BigDecimal(15),"Banan","Frukt",new BigDecimal(0.3));
+        Product p7 = new Product(7946,new BigDecimal(15),"Banan 300g","Frukt",new BigDecimal(0.3));
 
         // Total value: 10 949kr
 
