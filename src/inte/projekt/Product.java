@@ -53,7 +53,6 @@ public class Product {
 		} else if (id > 0) {
 			this.id = id;
 		}
-		else throw new IllegalArgumentException("Invalid ID");
 	}
 
 	public String getName() {
