@@ -52,18 +52,14 @@ public class DiscountOnProduct implements DiscountInterface {
     }
 
     public BigDecimal getPriceWithDiscount(List<Product> productsFromReceipt) {
-        BigDecimal temp;
+        BigDecimal temp = BigDecimal.ZERO;
         for (Product p : productsFromReceipt) {
-            if (discountProcentage.equals(BigDecimal.ZERO)) {
-                return p.getPrice();
-            } else {
-                temp = BigDecimal.ONE.subtract(this.discountProcentage);
-                temp = p.getPrice().multiply(temp);
-                return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+            if(p.getId() == productId){
+                temp = temp.add(p.getPrice().multiply(BigDecimal.ONE.subtract(this.discountProcentage)));
             }
         }
 
-        return null;
+        return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
     }
 
     @Override

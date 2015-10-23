@@ -55,4 +55,16 @@ public class TestDiscountOnProduct {
 
     }
 
+    @Test
+    public void testGetPriceWithDiscount(){
+        DiscountOnProduct d1 = new DiscountOnProduct(DISCOUNT_ID + "1", 1, new BigDecimal(0.2));
+        DiscountOnProduct d2 = new DiscountOnProduct(DISCOUNT_ID + "2", 2, new BigDecimal(0.3));
+        DiscountOnProduct d3 = new DiscountOnProduct(DISCOUNT_ID + "3", 3, new BigDecimal(0.4));
+        System.out.println(d1.getPriceWithDiscount(r.getProductList()));
+        System.out.println(d2.getPriceWithDiscount(r.getProductList()));
+        System.out.println(d3.getPriceWithDiscount(r.getProductList()));
+
+
+    }
+
 }
