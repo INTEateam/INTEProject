@@ -2,7 +2,6 @@ package inte.projekt;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -76,24 +75,25 @@ public class Receipt {
         this.customer = customer;
     }
 
-    public String toString(){
+    public String toString() {
         String receipt = "PRODUCTS\n";
-        for(int i = 0; i < products.size(); i++){
-            receipt += products.get(i).getName() +"\t"+products.get(i).getPrice()+"kr \n";
+        for (int i = 0; i < products.size(); i++) {
+            receipt += products.get(i).getName() + "\t" + products.get(i).getPrice() + "kr \n";
         }
         receipt += "----------------------";
         receipt += "\n" + "Total: " + getPriceSum() + "kr";
         receipt += "\n\nAPPLIED DISCOUNTS\n";
-        for(int i = 0; i < discounts.size(); i++){
-            if(discounts.get(i).checkDiscount(products)){
+        for (int i = 0; i < discounts.size(); i++) {
+            if (discounts.get(i).checkDiscount(products)) {
                 receipt += discounts.get(i).toString();
             }
         }
         receipt += "----------------------";
         receipt += "\n" + "Total: " + getTotalDiscount() + "kr\n";
-
-        receipt += "\nDELIVERY ADDRESS";
-        receipt += customer.toString();
+        if (customer != null) {
+            receipt += "\nDELIVERY ADDRESS";
+            receipt += customer.toString();
+        }
 
         return receipt;
     }

@@ -1,9 +1,8 @@
 package inte.projekt;
 
-import org.junit.Test;
-import org.junit.Before;
 import org.junit.After;
-
+import org.junit.Before;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -63,7 +62,7 @@ public class TestDiscountOnAllProducts {
      */
     @Test
     public void testGetDiscountSum() throws Exception {
-        DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(0.10));
+        DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(10));
         assertEquals(true, doap.checkDiscount(p, true));
 
         assertEquals(new BigDecimal(30.00).setScale(2), doap.getDiscountSum(p));

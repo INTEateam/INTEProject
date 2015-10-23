@@ -90,29 +90,7 @@ public class TestReceipt {
 
         r.removeProduct(3);
         assertEquals(2, r.getProductCount());
-    }
-    
-    @Test
-    public void testAddProductWithDiscount(){
-        Product p = new Product(1, new BigDecimal(10), "product 1", "typ 2");
-        Discount d = new Discount(new BigDecimal(0.2), p);
-        p.price = d.getPriceWithDiscount();
-        r.addProduct(p);
-        assertEquals(new BigDecimal(18).setScale(2, BigDecimal.ROUND_HALF_UP),r.getPriceSum());
-        
-    }
-     @Test
-    public void testAddMultipleProductsWithDiscount(){
-        Product p = new Product(1, new BigDecimal(10), "product 1", "typ 2");
-        Discount d = new Discount(new BigDecimal(0.2), p);
-        p.price = d.getPriceWithDiscount();
-        r.addProduct(p);
-        Product p1 = new Product(2, new BigDecimal(20), "product 1", "typ 2");
-        Discount d1 = new Discount(new BigDecimal(0.5), p1);
-        p1.price = d1.getPriceWithDiscount();
-        r.addProduct(p1);
-        assertEquals(new BigDecimal(28).setScale(2, BigDecimal.ROUND_HALF_UP),r.getPriceSum());
-    }
+    }  
 
     @Test
     public void testToString(){
