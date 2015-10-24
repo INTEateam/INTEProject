@@ -60,9 +60,11 @@ public class TestDiscountOnProduct {
         DiscountOnProduct d1 = new DiscountOnProduct(1, new BigDecimal(0.2));
         DiscountOnProduct d2 = new DiscountOnProduct(2, new BigDecimal(0.3));
         DiscountOnProduct d3 = new DiscountOnProduct(3, new BigDecimal(0.4));
-        System.out.println(d1.getPriceWithDiscount(r.getProductList()));
-        System.out.println(d2.getPriceWithDiscount(r.getProductList()));
-        System.out.println(d3.getPriceWithDiscount(r.getProductList()));
+
+        assertEquals(new BigDecimal(80),d1.getPriceWithDiscount(r.getProductList()));
+        assertEquals(new BigDecimal(140), d2.getPriceWithDiscount(r.getProductList()));
+        //Product 3 is dont exist
+        assertEquals(new BigDecimal(0), d3.getPriceWithDiscount(r.getProductList()));
     }
 
     @Test
