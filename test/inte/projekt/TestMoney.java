@@ -20,4 +20,11 @@ public class TestMoney {
         m.add(1);
         assertEquals("11.00", m.toString());
     }
+
+    @Test
+    public void testSubtract(){
+        Money m = new Money(10);
+        m.subtract(1);
+        assertEquals("9.00", m.toString());
+    }
 }
