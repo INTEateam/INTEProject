@@ -71,7 +71,7 @@ public class TestDiscountOnCategory {
     @Test
     public void testToString(){
         DiscountOnCategory doc = new DiscountOnCategory("Meat", new BigDecimal(5));
-        assertEquals("Meat\t5kr\n",doc.toString());
+        assertEquals("Category Discount, Category: Meat, Amount: 5, Only Members: false",doc.toString());
     }
 
 }

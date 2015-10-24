@@ -85,7 +85,7 @@ public class Receipt {
         receipt += "\n\nAPPLIED DISCOUNTS\n";
         for (int i = 0; i < discounts.size(); i++) {
             if (discounts.get(i).checkDiscount(products)) {
-                receipt += discounts.get(i).toString();
+                receipt += discounts.get(i).toString() + "\n";
             }
         }
         receipt += "----------------------";

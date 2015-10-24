@@ -83,5 +83,12 @@ public class DiscountOneForFree implements DiscountInterface {
         return new BigDecimal(numberOfProducts);
     }
 
-
+    @Override
+    public String toString() {
+        return  DISCOUNT_ID +
+                ", Number of products: " + numberOfProducts +
+                ", Number of products to pay: " + numberOfProductsToPay +
+                ", Affected Product Id: " + affectedProductId +
+                ", Only Members: " + onlyMembers;
+    }
 }

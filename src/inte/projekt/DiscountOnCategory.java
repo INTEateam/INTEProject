@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiscountOnCategory implements DiscountInterface {
-
+    private String DISCOUNT_ID = "Category Discount";
     private String category;
     private BigDecimal amount = BigDecimal.ZERO;
     private boolean onlyMembers;
@@ -64,7 +64,7 @@ public class DiscountOnCategory implements DiscountInterface {
 
     @Override
     public String getID() {
-        return category;
+        return DISCOUNT_ID;
     }
 
     @Override
@@ -72,7 +72,11 @@ public class DiscountOnCategory implements DiscountInterface {
         return amount;
     }
 
+    @Override
     public String toString() {
-        return getID() + "\t" + getDiscountAmount() + "kr\n";
+        return DISCOUNT_ID +
+                ", Category: " + category +
+                ", Amount: " + amount +
+                ", Only Members: " + onlyMembers;
     }
 }

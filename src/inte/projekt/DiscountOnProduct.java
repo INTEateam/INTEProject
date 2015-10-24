@@ -93,4 +93,11 @@ public class DiscountOnProduct implements DiscountInterface {
         return discountPercentage;
     }
 
+    @Override
+    public String toString() {
+        return DISCOUNT_ID +
+                ", Product Id: " + productId +
+                ", Discount Percentage: " + discountPercentage +
+                ", Only Members: " + onlyMembers;
+    }
 }

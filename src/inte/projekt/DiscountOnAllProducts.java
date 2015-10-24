@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Nicklas on 2015-10-21.
  */
 public class DiscountOnAllProducts implements DiscountInterface {
-    final private String DISCOUNT_NAME = "Sales discount";
+    final private String DISCOUNT_ID = "Sales discount";
     private BigDecimal discountAmount;
     private boolean onlyMembers;
 
@@ -57,7 +57,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
     @Override
     public String getID() {
-        return DISCOUNT_NAME;
+        return DISCOUNT_ID;
     }
 
     @Override
@@ -65,9 +65,10 @@ public class DiscountOnAllProducts implements DiscountInterface {
         return discountAmount;
     }
 
+    @Override
     public String toString() {
-        return getID() + "\t" + getDiscountAmount() + "%\n";
+        return DISCOUNT_ID +
+                ", Discount Amount: " + discountAmount +
+                ", Only Members: " + onlyMembers;
     }
-
-
 }

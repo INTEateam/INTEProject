@@ -90,7 +90,7 @@ public class TestDiscountOnAllProducts {
     @Test
     public void testToString(){
         DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(0.10));
-        assertEquals("Sales discount" +"\t" + "0.10"  + "%" + "\n", doap.toString());
+        assertEquals("Sales discount, Discount Amount: 0.10, Only Members: false", doap.toString());
         assertEquals("Sales discount", doap.getID());
     }
 
