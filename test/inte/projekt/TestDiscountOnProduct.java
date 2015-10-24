@@ -56,28 +56,38 @@ public class TestDiscountOnProduct {
     }
 
     @Test
-    public void testGetPriceWithDiscount(){
+    public void testGetPriceWithDiscount() {
         DiscountOnProduct d1 = new DiscountOnProduct(1, new BigDecimal(0.2));
         DiscountOnProduct d2 = new DiscountOnProduct(2, new BigDecimal(0.3));
         DiscountOnProduct d3 = new DiscountOnProduct(3, new BigDecimal(0.4));
         System.out.println(d1.getPriceWithDiscount(r.getProductList()));
         System.out.println(d2.getPriceWithDiscount(r.getProductList()));
         System.out.println(d3.getPriceWithDiscount(r.getProductList()));
-
-
     }
 
     @Test
-    public void testCheckDiscount(){
+    public void testCheckDiscount() {
         DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(.2));
         assertTrue(d.checkDiscount(r.getProductList()));
     }
 
     @Test
-    public void testCheckDiscountMember(){
+    public void testCheckDiscountMember() {
         DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(.2), true);
         assertTrue(!d.checkDiscount(r.getProductList()));
-        assertTrue(d.checkDiscount(r.getProductList(),true));
+        assertTrue(d.checkDiscount(r.getProductList(), true));
+    }
+
+    @Test
+    public void testGetID() {
+        DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(.2), true);
+        assertEquals("Discount on Product", d.getID());
+    }
+
+    @Test
+    public void testGetDiscountAmount() {
+        DiscountOnProduct d = new DiscountOnProduct(2, new BigDecimal(.2), true);
+        assertEquals(new BigDecimal(.2), d.getDiscountAmount());
     }
 
 }

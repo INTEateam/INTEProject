@@ -1,7 +1,6 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class DiscountOnProduct implements DiscountInterface {
         this(productId, discountPercentage, false);
     }
 
-    public DiscountOnProduct(int productId, BigDecimal discountPercentage, boolean onlyMembers) {				 // Added scale and RoundingMode for precision 
+    public DiscountOnProduct(int productId, BigDecimal discountPercentage, boolean onlyMembers) {                 // Added scale and RoundingMode for precision
         if (discountPercentage.compareTo(BigDecimal.ZERO) > 0 && discountPercentage.compareTo(new BigDecimal(0.7).setScale(2, BigDecimal.ROUND_HALF_UP)) <= 0) {
             this.discountPercentage = discountPercentage;
             this.productId = productId;
@@ -31,25 +30,16 @@ public class DiscountOnProduct implements DiscountInterface {
     public boolean checkDiscount(List<Product> productsFromReceipt, boolean isMember) {
         boolean b = false;
         if (isMember) {
-
-            for (Product p : productsFromReceipt) {
-                if (p.getId() == productId) {
-                    b = true;
-                    break;
-                }
-            }
+            b = productValidForDiscountExists(productsFromReceipt);
 
         } else if (!onlyMembers) {
-
-            for (Product p : productsFromReceipt) {
-                if (p.getId() == productId) {
-                    b = true;
-                    break;
-                }
-            }
-
+            b = productValidForDiscountExists(productsFromReceipt);
         }
         return b;
+    }
+
+    private boolean productValidForDiscountExists(List<Product> productsFromReceipt) {
+        return getAffectedProducts(productsFromReceipt).size() > 0;
     }
 
     @Override
