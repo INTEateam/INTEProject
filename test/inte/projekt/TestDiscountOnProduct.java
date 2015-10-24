@@ -28,14 +28,14 @@ public class TestDiscountOnProduct {
     @Test
     public void getDiscountProductSum() {
         don = new DiscountOnProduct(2, new BigDecimal(0.3));
-        assertEquals(new BigDecimal(60), don.getDiscountSum(r.getProductList()));
+        assertEquals(new BigDecimal(60.00).setScale(2), don.getDiscountSum(r.getProductList()));
 
     }
 
     @Test
     public void twoProductDiscountOnOneProduct() {
         don = new DiscountOnProduct(2, new BigDecimal(0.5));
-        assertEquals(new BigDecimal(100), don.getDiscountSum(r.getProductList()));
+        assertEquals(new BigDecimal(100.00).setScale(2), don.getDiscountSum(r.getProductList()));
 
     }
 
@@ -61,10 +61,10 @@ public class TestDiscountOnProduct {
         DiscountOnProduct d2 = new DiscountOnProduct(2, new BigDecimal(0.3));
         DiscountOnProduct d3 = new DiscountOnProduct(3, new BigDecimal(0.4));
 
-        assertEquals(new BigDecimal(80),d1.getPriceWithDiscount(r.getProductList()));
-        assertEquals(new BigDecimal(140), d2.getPriceWithDiscount(r.getProductList()));
+        assertEquals(new BigDecimal(80.00).setScale(2),d1.getPriceWithDiscount(r.getProductList()));
+        assertEquals(new BigDecimal(140.00).setScale(2), d2.getPriceWithDiscount(r.getProductList()));
         //Product 3 is dont exist
-        assertEquals(new BigDecimal(0), d3.getPriceWithDiscount(r.getProductList()));
+        assertEquals(new BigDecimal(0.00).setScale(2), d3.getPriceWithDiscount(r.getProductList()));
     }
 
     @Test

@@ -1,6 +1,7 @@
 package inte.projekt;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class Receipt {
         for (Product p : products) {
             sum = sum.add(p.getPrice());
         }
-        return sum.subtract(getTotalDiscount());
+        return sum.subtract(getTotalDiscount()).setScale(2, RoundingMode.HALF_UP);
     }
 
     public List getProductList() {

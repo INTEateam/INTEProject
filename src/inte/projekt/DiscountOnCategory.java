@@ -74,9 +74,9 @@ public class DiscountOnCategory implements DiscountInterface {
 
     @Override
     public String toString() {
-        return DISCOUNT_ID +
+        return getID() +
                 ", Category: " + category +
-                ", Amount: " + amount +
+                ", Amount: " + getDiscountAmount().toString() +
                 ", Only Members: " + onlyMembers;
     }
 }

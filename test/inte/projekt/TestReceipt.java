@@ -14,8 +14,12 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestReceipt {
     private Receipt r;
+    ArrayList<DiscountInterface> d;
+
     private final int TOTAL_INCLUDING_DISCOUNT = 20;
     private final int PRODUCT_COUNT = 8;
+
+
 
     @Before
     public void before() {
@@ -32,9 +36,9 @@ public class TestReceipt {
         r.addProduct(new Product(5, new BigDecimal(2), "Produkt 5", "Typ 3"));
         r.addProduct(new Product(6, new BigDecimal(5), "Produkt 6", "Typ 3"));
 
-        ArrayList<DiscountInterface> d = new ArrayList<>();
+        d = new ArrayList<>();
 
-        //DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(.01));
+
         DiscountOnCategory doc = new DiscountOnCategory("Typ 1", BigDecimal.ONE);
         d.add(doc);
 
@@ -118,9 +122,30 @@ public class TestReceipt {
     }
 
     @Test
-    public void testToString() {
-        //TODO automatic
-        r.toString();
+    public void testHalfPriceOnOneProduct(){
+        DiscountOnProduct dop = new DiscountOnProduct(6,new BigDecimal(0.50));
+        d.add(dop);
+        assertEquals(new BigDecimal(TOTAL_INCLUDING_DISCOUNT - 2.5).setScale(2), r.getPriceSum());
+
+        String s = "PRODUCTS\n" +
+                "Produkt 1\t3kr \n" +
+                "Produkt 2\t2kr \n" +
+                "Produkt 3\t5kr \n" +
+                "Produkt 4\t3kr \n" +
+                "Produkt 4\t3kr \n" +
+                "Produkt 4\t3kr \n" +
+                "Produkt 5\t2kr \n" +
+                "Produkt 6\t5kr \n" +
+                "----------------------\n" +
+                "Total: 17.50kr\n" +
+                "\n" +
+                "APPLIED DISCOUNTS\n" +
+                "Category Discount, Category: Typ 1, Amount: 1, Only Members: false\n" +
+                "One for free, Number of products: 3, Number of products to pay: 2, Affected Product Id: 4, Only Members: false\n" +
+                "Discount on Product, Product Id: 6, Discount Percentage: 0.5, Only Members: false\n" +
+                "----------------------\n" +
+                "Total: 8.50kr\n";
+        assertEquals(s, r.toString());
     }
 
     @Test
@@ -128,7 +153,46 @@ public class TestReceipt {
         Customer c = new Customer("9001013318", "Namn", "Efternamn", "Gata", "nr2", "12345", true);
         r.setCustomer(c);
         assertEquals(c, r.getCustomer());
-        System.out.print(r.toString());
+    }
+
+    @Test
+    public void testDiscountOnAllProducts(){
+        DiscountOnAllProducts doap = new DiscountOnAllProducts(new BigDecimal(10), false);
+        d.add(doap);
+        assertEquals(new BigDecimal(17.40).setScale(2, BigDecimal.ROUND_HALF_UP), r.getPriceSum());
+    }
+
+
+    @Test
+         public void testToString() {
+        Customer c = new Customer("9001013318", "Namn", "Efternamn", "Gata", "nr2", "12345", true);
+        r.setCustomer(c);
+        //TODO automatic
+
+        String s = "PRODUCTS\n" +
+                "Produkt 1\t3kr \n" +
+                "Produkt 2\t2kr \n" +
+                "Produkt 3\t5kr \n" +
+                "Produkt 4\t3kr \n" +
+                "Produkt 4\t3kr \n" +
+                "Produkt 4\t3kr \n" +
+                "Produkt 5\t2kr \n" +
+                "Produkt 6\t5kr \n" +
+                "----------------------\n" +
+                "Total: 20.00kr\n" +
+                "\n" +
+                "APPLIED DISCOUNTS\n" +
+                "Category Discount, Category: Typ 1, Amount: 1, Only Members: false\n" +
+                "One for free, Number of products: 3, Number of products to pay: 2, Affected Product Id: 4, Only Members: false\n" +
+                "----------------------\n" +
+                "Total: 6.00kr\n" +
+                "\n" +
+                "DELIVERY ADDRESS\n" +
+                "Namn Efternamn\n" +
+                "Gata nr2\n" +
+                "12345\n";
+
+        assertEquals(s, r.toString());
     }
 
 }

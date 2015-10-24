@@ -56,7 +56,7 @@ public class DiscountOnProduct implements DiscountInterface {
             }
         }
 
-        return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+        return temp.setScale(2, BigDecimal.ROUND_HALF_UP);
 
 
     }
@@ -80,7 +80,7 @@ public class DiscountOnProduct implements DiscountInterface {
             }
         }
 
-        return temp.setScale(0, BigDecimal.ROUND_HALF_UP);
+        return temp.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     @Override

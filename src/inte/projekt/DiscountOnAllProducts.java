@@ -18,8 +18,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
     }
 
     public DiscountOnAllProducts(BigDecimal decimalPercent) {
-        discountAmount = decimalPercent.setScale(2, BigDecimal.ROUND_HALF_UP);
-        this.onlyMembers = false;
+        this(decimalPercent, false);
     }
 
     @Override
@@ -44,7 +43,7 @@ public class DiscountOnAllProducts implements DiscountInterface {
 
                 sum = sum.add(p.getPrice());
             }
-            sum = sum.multiply(this.discountAmount).divide(new BigDecimal(100));
+            sum = sum.multiply(this.discountAmount.divide(new BigDecimal(100)));
 
         }
         return sum;
