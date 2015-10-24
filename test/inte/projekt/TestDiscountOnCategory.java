@@ -50,4 +50,28 @@ public class TestDiscountOnCategory {
         assertEquals(2, doc.getAffectedProducts(p).size());
     }
 
+    @Test
+    public void testCheckDiscountForMembersIsMember(){
+        DiscountOnCategory doc = new DiscountOnCategory("Meat", new BigDecimal(5),true);
+        assertEquals(true,doc.checkDiscount(p,true));
+    }
+
+    @Test
+    public void testCheckDiscountForMembersIsNotMember(){
+        DiscountOnCategory doc = new DiscountOnCategory("Meat", new BigDecimal(5),true);
+        assertEquals(false,doc.checkDiscount(p,false));
+    }
+
+    @Test
+    public void testCheckDiscountNotForMembersIsMember(){
+        DiscountOnCategory doc = new DiscountOnCategory("Meat", new BigDecimal(5),false);
+        assertEquals(true,doc.checkDiscount(p,true));
+    }
+
+    @Test
+    public void testToString(){
+        DiscountOnCategory doc = new DiscountOnCategory("Meat", new BigDecimal(5));
+        assertEquals("Meat\t5kr\n",doc.toString());
+    }
+
 }

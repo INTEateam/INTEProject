@@ -8,15 +8,26 @@ public class DiscountOnCategory implements DiscountInterface {
 
     private String category;
     private BigDecimal amount = BigDecimal.ZERO;
+    private boolean onlyMembers;
 
     public DiscountOnCategory(String category, BigDecimal amount) {
         this.category = category;
         this.amount = amount;
     }
 
+    public DiscountOnCategory(String category, BigDecimal amount, boolean onlyMembers) {
+        this.category = category;
+        this.amount = amount;
+        this.onlyMembers = onlyMembers;
+    }
+
     @Override
     public boolean checkDiscount(List<Product> productsFromReceipt, boolean isMember) {
-        return false;
+        if(onlyMembers){
+            return isMember;
+        }else{
+            return true;
+        }
     }
 
     @Override
