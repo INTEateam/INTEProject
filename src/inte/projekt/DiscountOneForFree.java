@@ -11,13 +11,6 @@ public class DiscountOneForFree implements DiscountInterface {
     private int affectedProductId;
     private boolean onlyMembers;
 
-    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int affectedProductId) {
-        this.numberOfProducts = numberOfProducts;
-        this.numberOfProductsToPay = numberOfProductsToPay;
-        this.affectedProductId = affectedProductId;
-
-    }
-
     public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int affectedProductId, boolean onlyMembers) {
         this.numberOfProducts = numberOfProducts;
         this.numberOfProductsToPay = numberOfProductsToPay;
@@ -25,28 +18,25 @@ public class DiscountOneForFree implements DiscountInterface {
         this.onlyMembers = onlyMembers;
     }
 
+    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int affectedProductId) {
+        this(numberOfProducts, numberOfProductsToPay, affectedProductId, false);
+    }
+
     @Override
     public boolean checkDiscount(List<Product> productsFromReceipt, boolean isMember) {
         boolean valid = false;
         if (onlyMembers) {
-            if(isMember){
+            if (isMember) {
                 valid = productValidForDiscountExists(productsFromReceipt);
             }
-        }else{
+        } else {
             valid = productValidForDiscountExists(productsFromReceipt);
         }
         return valid;
     }
 
-    private boolean productValidForDiscountExists(List<Product> productsFromReceipt){
-        boolean b = false;
-        for (Product p : productsFromReceipt) {
-            if (p.getId() == affectedProductId) {
-                b = true;
-                break;
-            }
-        }
-        return b;
+    private boolean productValidForDiscountExists(List<Product> productsFromReceipt) {
+        return getAffectedProducts(productsFromReceipt).size() > 0;
     }
 
     @Override

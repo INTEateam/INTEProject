@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -55,6 +56,27 @@ public class TestDiscountOneForFree {
         DiscountOneForFree doff = new DiscountOneForFree(3, 2, 2, true);
         assertTrue(!doff.checkDiscount(r.getProductList()));
         assertTrue(doff.checkDiscount(r.getProductList(),true));
+    }
+
+    @Test
+    public void TestNoProductsPassed(){
+        DiscountOneForFree doff = new DiscountOneForFree(3, 2, 2, true);
+        assertTrue(!doff.checkDiscount(new ArrayList<>()));
+
+    }
+
+    //public String getID() {
+    @Test
+    public void TestgetID(){
+        DiscountOneForFree doff = new DiscountOneForFree(3, 2, 2, true);
+        assertEquals("One for free", doff.getID());
+    }
+
+    //public BigDecimal getDiscountAmount() {
+    @Test
+    public void TestGetDiscountAmonunt(){
+        DiscountOneForFree doff = new DiscountOneForFree(3, 2, 2, true);
+        assertEquals(new BigDecimal(3), doff.getDiscountAmount());
     }
 
 }
