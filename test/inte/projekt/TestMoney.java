@@ -13,4 +13,11 @@ public class TestMoney {
         Money m = new Money(10);
         assertEquals("10.00", m.toString());
     }
+
+    @Test
+    public void testAdd(){
+        Money m = new Money(10);
+        m.add(1);
+        assertEquals("11.00", m.toString());
+    }
 }
