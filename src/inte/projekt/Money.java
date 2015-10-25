@@ -14,6 +14,10 @@ public class Money {
         this.amount = this.amount + amountToAdd;
     }
 
+    public void subtract(int amountToSubtract){
+        this.amount = this.amount - amountToSubtract;
+    }
+
     @Override
     public String toString() {
         return amount + ".00";
