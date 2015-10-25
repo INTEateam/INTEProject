@@ -44,4 +44,13 @@ public class TestMoney {
         assertEquals("8.00", m.toString());
     }
 
+    @Test
+    public void decreasePercent(){
+        Money m = new Money(10);
+        m.decreasePercent(10);
+        assertEquals("9.00", m.toString());
+        m.decreasePercent(10);
+        assertEquals("8.10", m.toString());
+    }
+
 }
