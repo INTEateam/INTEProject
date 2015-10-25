@@ -80,24 +80,40 @@ public class TestMoney {
     @Test(expected = IllegalArgumentException.class)
     public void testNoNegativeNumbersSubtract() {
         Money m = new Money(10);
-        m.subtract(-1);
         m.subtract(-1.0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNoNegativeNumbersSubtractInt() {
+        Money m = new Money(10);
+        m.subtract(-1);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNoNegativeNumbersAdd() {
         Money m = new Money(10);
-        m.add(-1);
         m.add(-1.0);
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testNoNegativeNumbersAddInt() {
+        Money m = new Money(10);
+        m.add(-1);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testNoNegativeNumbersSum() {
-        Money m = new Money(2);
+        Money m = new Money(1);
         m.subtract(1);
         m.subtract(1.0);
-        m.subtract(1.0);
-        assertEquals("0.00", m.toString());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNoNegativeNumbersSumInt() {
+        Money m = new Money(1);
+        m.subtract(1);
+        m.subtract(1);
     }
 
     @Test(expected = IllegalArgumentException.class)
