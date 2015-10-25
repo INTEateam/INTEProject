@@ -35,13 +35,13 @@ public class Money {
     public void decreasePercent(int percent) {
         BigDecimal decimalPercent = new BigDecimal(percent).movePointLeft(2);
         BigDecimal amountToRemove = this.amount.multiply(decimalPercent, context);
-        this.amount = this.amount.subtract(amountToRemove, context);
+        this.amount = this.amount.subtract(amountToRemove);
     }
 
     public void increasePercent(int percent) {
-        BigDecimal decimalPercent = new BigDecimal(percent).movePointLeft(2);
+        BigDecimal decimalPercent = new BigDecimal(percent, context).movePointLeft(2);
         BigDecimal amountToAdd = this.amount.multiply(decimalPercent, context);
-        this.amount = this.amount.add(amountToAdd, context);
+        this.amount = this.amount.add(amountToAdd);
     }
 
     @Override
