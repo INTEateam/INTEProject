@@ -38,6 +38,12 @@ public class Money {
         this.amount = this.amount.subtract(amountToRemove, context);
     }
 
+    public void increasePercent(int percent) {
+        BigDecimal decimalPercent = new BigDecimal(percent).movePointLeft(2);
+        BigDecimal amountToAdd = this.amount.multiply(decimalPercent, context);
+        this.amount = this.amount.add(amountToAdd, context);
+    }
+
     @Override
     public String toString() {
         return this.amount.setScale(TWO_DECIMALS).toString();

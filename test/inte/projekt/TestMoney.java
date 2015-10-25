@@ -71,7 +71,10 @@ public class TestMoney {
     @Test
     public void testIncreasePercent(){
         Money m = new Money(10);
-        //m
+        m.increasePercent(10);
+        assertEquals("11.00", m.toString());
+        m.increasePercent(10);
+        assertEquals("12.10", m.toString());
     }
 
 }
