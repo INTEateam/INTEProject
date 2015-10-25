@@ -19,21 +19,25 @@ public class Money {
     public void add(int amountToAdd) {
         if (notNegative(amountToAdd))
             this.amount = this.amount.add(new BigDecimal(amountToAdd));
+        else throw new IllegalArgumentException("Negative Number");
     }
 
     public void add(double amountToAdd) {
         if (notNegative(amountToAdd))
             this.amount = this.amount.add(new BigDecimal(amountToAdd).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
+        else throw new IllegalArgumentException("Negative Number");
     }
 
     public void subtract(int amountToSubtract) {
         if (notNegative(amountToSubtract))
             this.amount = this.amount.subtract(new BigDecimal(amountToSubtract));
+        else throw new IllegalArgumentException("Negative Number");
     }
 
     public void subtract(double amountToSubtract) {
         if (notNegative(amountToSubtract))
             this.amount = this.amount.subtract(new BigDecimal(amountToSubtract).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
+        else throw new IllegalArgumentException("Negative Number");
     }
 
     public void decreasePercent(int percent) {

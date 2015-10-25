@@ -78,9 +78,17 @@ public class TestMoney {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNoNegativeNumbers(){
+    public void testNoNegativeNumbersSubtract(){
         Money m = new Money(10);
         m.subtract(-1);
+        m.subtract(-1.0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNoNegativeNumbersAdd(){
+        Money m = new Money(10);
+        m.add(-1);
+        m.add(-1.0);
     }
 
 }
