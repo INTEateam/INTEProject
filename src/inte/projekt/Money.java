@@ -17,19 +17,23 @@ public class Money {
     }
 
     public void add(int amountToAdd) {
-        this.amount = this.amount.add(new BigDecimal(amountToAdd));
+        if (notNegative(amountToAdd))
+            this.amount = this.amount.add(new BigDecimal(amountToAdd));
     }
 
     public void add(double amountToAdd) {
-        this.amount = this.amount.add(new BigDecimal(amountToAdd).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
+        if (notNegative(amountToAdd))
+            this.amount = this.amount.add(new BigDecimal(amountToAdd).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
     }
 
     public void subtract(int amountToSubtract) {
-        this.amount = this.amount.subtract(new BigDecimal(amountToSubtract));
+        if (notNegative(amountToSubtract))
+            this.amount = this.amount.subtract(new BigDecimal(amountToSubtract));
     }
 
     public void subtract(double amountToSubtract) {
-        this.amount = this.amount.subtract(new BigDecimal(amountToSubtract).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
+        if (notNegative(amountToSubtract))
+            this.amount = this.amount.subtract(new BigDecimal(amountToSubtract).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
     }
 
     public void decreasePercent(int percent) {
@@ -42,6 +46,14 @@ public class Money {
         BigDecimal decimalPercent = new BigDecimal(percent, context).movePointLeft(2);
         BigDecimal amountToAdd = this.amount.multiply(decimalPercent, context);
         this.amount = this.amount.add(amountToAdd);
+    }
+
+    private boolean notNegative(int num) {
+        return num >= 0;
+    }
+
+    private boolean notNegative(double num) {
+        return num >= 0;
     }
 
     @Override

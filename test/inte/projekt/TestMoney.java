@@ -77,4 +77,10 @@ public class TestMoney {
         assertEquals("12.10", m.toString());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testNoNegativeNumbers(){
+        Money m = new Money(10);
+        m.subtract(-1);
+    }
+
 }
