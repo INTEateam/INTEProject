@@ -35,7 +35,7 @@ public class Money {
     public void subtract(int amountToSubtract) {
         if (notNegative(amountToSubtract)) {
             this.amount = this.amount.subtract(new BigDecimal(amountToSubtract));
-            if(!notNegative(this.amount)){
+            if (!notNegative(this.amount)) {
                 throw new IllegalArgumentException("Negative Total");
             }
         } else {
@@ -46,7 +46,7 @@ public class Money {
     public void subtract(double amountToSubtract) {
         if (notNegative(amountToSubtract)) {
             this.amount = this.amount.subtract(new BigDecimal(amountToSubtract).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
-            if(!notNegative(this.amount)){
+            if (!notNegative(this.amount)) {
                 throw new IllegalArgumentException("Negative Total");
             }
         } else {
@@ -55,20 +55,25 @@ public class Money {
     }
 
     public void decreasePercent(int percent) {
-        BigDecimal decimalPercent = new BigDecimal(percent).movePointLeft(2);
-        BigDecimal amountToRemove = this.amount.multiply(decimalPercent, context);
-        this.amount = this.amount.subtract(amountToRemove);
-        if(!notNegative(this.amount)){
-            throw new IllegalArgumentException("Negative Total");
+        if (notNegative(percent)) {
+            BigDecimal decimalPercent = new BigDecimal(percent).movePointLeft(2);
+            BigDecimal amountToRemove = this.amount.multiply(decimalPercent, context);
+            this.amount = this.amount.subtract(amountToRemove);
+            if (!notNegative(this.amount)) {
+                throw new IllegalArgumentException("Negative Total");
+            }
+        } else {
+            throw new IllegalArgumentException("Negative Number");
         }
     }
 
     public void increasePercent(int percent) {
-        BigDecimal decimalPercent = new BigDecimal(percent, context).movePointLeft(2);
-        BigDecimal amountToAdd = this.amount.multiply(decimalPercent, context);
-        this.amount = this.amount.add(amountToAdd);
-        if(!notNegative(this.amount)){
-            throw new IllegalArgumentException("Negative Total");
+        if (notNegative(percent)) {
+            BigDecimal decimalPercent = new BigDecimal(percent, context).movePointLeft(2);
+            BigDecimal amountToAdd = this.amount.multiply(decimalPercent, context);
+            this.amount = this.amount.add(amountToAdd);
+        } else {
+            throw new IllegalArgumentException("Negative Number");
         }
     }
 

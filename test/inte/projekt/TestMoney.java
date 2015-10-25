@@ -9,27 +9,27 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestMoney {
     @Test
-    public void testCreate(){
+    public void testCreate() {
         Money m = new Money(10);
         assertEquals("10.00", m.toString());
     }
 
     @Test
-         public void testAdd(){
+    public void testAdd() {
         Money m = new Money(10);
         m.add(1);
         assertEquals("11.00", m.toString());
     }
 
     @Test
-    public void testAddDecimals(){
+    public void testAddDecimals() {
         Money m = new Money(10);
         m.add(1.01);
         assertEquals("11.01", m.toString());
     }
 
     @Test
-    public void testAddMultiple(){
+    public void testAddMultiple() {
         Money m = new Money(10);
         m.add(1);
         m.add(1);
@@ -37,14 +37,14 @@ public class TestMoney {
     }
 
     @Test
-    public void testSubtract(){
+    public void testSubtract() {
         Money m = new Money(10);
         m.subtract(1);
         assertEquals("9.00", m.toString());
     }
 
     @Test
-    public void testSubtractDecimals(){
+    public void testSubtractDecimals() {
         Money m = new Money(10);
         double d = 1.01;
         m.subtract(d);
@@ -52,7 +52,7 @@ public class TestMoney {
     }
 
     @Test
-    public void testSubtractMultiple(){
+    public void testSubtractMultiple() {
         Money m = new Money(10);
         m.subtract(1);
         m.subtract(1);
@@ -60,7 +60,7 @@ public class TestMoney {
     }
 
     @Test
-    public void testDecreasePercent(){
+    public void testDecreasePercent() {
         Money m = new Money(10);
         m.decreasePercent(10);
         assertEquals("9.00", m.toString());
@@ -69,7 +69,7 @@ public class TestMoney {
     }
 
     @Test
-    public void testIncreasePercent(){
+    public void testIncreasePercent() {
         Money m = new Money(10);
         m.increasePercent(10);
         assertEquals("11.00", m.toString());
@@ -78,27 +78,45 @@ public class TestMoney {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNoNegativeNumbersSubtract(){
+    public void testNoNegativeNumbersSubtract() {
         Money m = new Money(10);
         m.subtract(-1);
         m.subtract(-1.0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNoNegativeNumbersAdd(){
+    public void testNoNegativeNumbersAdd() {
         Money m = new Money(10);
         m.add(-1);
         m.add(-1.0);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNoNegativeNumbersSum(){
+    public void testNoNegativeNumbersSum() {
         Money m = new Money(2);
         m.subtract(1);
         m.subtract(1.0);
         m.subtract(1.0);
-        System.out.print(m);
         assertEquals("0.00", m.toString());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativePercentSum() {
+        Money m = new Money(10);
+        m.decreasePercent(120);
+        System.out.println(m);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativePercentDecrease() {
+        Money m = new Money(10);
+        m.decreasePercent(-1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativePercentIncrease() {
+        Money m = new Money(10);
+        m.increasePercent(-1);
     }
 
 
