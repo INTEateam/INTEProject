@@ -94,10 +94,11 @@ public class TestMoney {
     @Test(expected = IllegalArgumentException.class)
     public void testNoNegativeNumbersSum(){
         Money m = new Money(2);
-        m.subtract(-1);
-        m.subtract(-1.0);
-
-        m.subtract(-1.0);
+        m.subtract(1);
+        m.subtract(1.0);
+        m.subtract(1.0);
+        System.out.print(m);
+        assertEquals("0.00", m.toString());
     }
 
 
