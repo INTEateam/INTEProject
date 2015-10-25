@@ -44,9 +44,10 @@ public class TestMoney {
     }
 
     @Test
-    public void testSubtract(){
+    public void testSubtractDecimals(){
         Money m = new Money(10);
-        m.subtract(1.01);
+        double d = 1.01;
+        m.subtract(d);
         assertEquals("8.99", m.toString());
     }
 
@@ -70,7 +71,7 @@ public class TestMoney {
     @Test
     public void testIncreasePercent(){
         Money m = new Money(10);
-        m
+        //m
     }
 
 }

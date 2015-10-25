@@ -20,8 +20,16 @@ public class Money {
         this.amount = this.amount.add(new BigDecimal(amountToAdd));
     }
 
+    public void add(double amountToAdd) {
+        this.amount = this.amount.add(new BigDecimal(amountToAdd).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
+    }
+
     public void subtract(int amountToSubtract) {
         this.amount = this.amount.subtract(new BigDecimal(amountToSubtract));
+    }
+
+    public void subtract(double amountToSubtract) {
+        this.amount = this.amount.subtract(new BigDecimal(amountToSubtract).setScale(TWO_DECIMALS, RoundingMode.HALF_UP));
     }
 
     public void decreasePercent(int percent) {
