@@ -33,7 +33,7 @@ public class Money {
     }
 
     public void decreasePercent(int percent) {
-        BigDecimal decimalPercent = new BigDecimal(10).movePointLeft(2);
+        BigDecimal decimalPercent = new BigDecimal(percent).movePointLeft(2);
         BigDecimal amountToRemove = this.amount.multiply(decimalPercent, context);
         this.amount = this.amount.subtract(amountToRemove, context);
     }
