@@ -15,10 +15,18 @@ public class TestMoney {
     }
 
     @Test
-    public void testAdd(){
+         public void testAdd(){
         Money m = new Money(10);
         m.add(1);
         assertEquals("11.00", m.toString());
+    }
+
+    @Test
+    public void testAddMultiple(){
+        Money m = new Money(10);
+        m.add(1);
+        m.add(1);
+        assertEquals("12.00", m.toString());
     }
 
     @Test
@@ -27,4 +35,13 @@ public class TestMoney {
         m.subtract(1);
         assertEquals("9.00", m.toString());
     }
+
+    @Test
+    public void testSubtractMultiple(){
+        Money m = new Money(10);
+        m.subtract(1);
+        m.subtract(1);
+        assertEquals("8.00", m.toString());
+    }
+
 }
