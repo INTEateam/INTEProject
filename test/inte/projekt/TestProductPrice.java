@@ -38,6 +38,12 @@ public class TestProductPrice {
         //assertEquals(new BigDecimal(0), p.getPrice());
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testNullPrice() {
+        Product p = new Product(VALID_ID, null, VALID_NAME, VALID_CATEGORY);
+        //assertEquals(new BigDecimal(0), p.getPrice());
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testPricewithTooManyDecimals() {
         Product p = new Product(VALID_ID, new BigDecimal("39.9876").setScale(4, RoundingMode.HALF_UP), VALID_NAME, VALID_CATEGORY);

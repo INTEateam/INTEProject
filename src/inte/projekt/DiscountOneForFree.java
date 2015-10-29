@@ -16,9 +16,9 @@ public class DiscountOneForFree implements DiscountInterface {
 
         if (isPositive(numberOfProducts)) {
             this.numberOfProducts = numberOfProducts;
-        } else if (isPositive(numberOfProductsToPay) && numberOfProductsToPay < numberOfProducts) {
+        }if (isPositive(numberOfProductsToPay) && numberOfProductsToPay < numberOfProducts) {
             this.numberOfProductsToPay = numberOfProductsToPay;
-        } else if (isPositive(affectedProductId)) {
+        }if (isPositive(affectedProductId)) {
             this.affectedProductId = affectedProductId;
         }
         this.onlyMembers = onlyMembers;
