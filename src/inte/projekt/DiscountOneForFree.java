@@ -5,21 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiscountOneForFree implements DiscountInterface {
-    private String DISCOUNT_ID = "One for free";
+    private static final String DISCOUNT_ID = "One for free";
     private int numberOfProducts;
     private int numberOfProductsToPay;
     private int affectedProductId;
     private boolean onlyMembers;
 
-    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int affectedProductId, boolean onlyMembers) {
-        this.numberOfProducts = numberOfProducts;
-        this.numberOfProductsToPay = numberOfProductsToPay;
-        this.affectedProductId = affectedProductId;
+    public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay,
+                              int affectedProductId, boolean onlyMembers) {
+
+        if (isPositive(numberOfProducts)) {
+            this.numberOfProducts = numberOfProducts;
+        } else if (isPositive(numberOfProductsToPay) && numberOfProductsToPay < numberOfProducts) {
+            this.numberOfProductsToPay = numberOfProductsToPay;
+        } else if (isPositive(affectedProductId)) {
+            this.affectedProductId = affectedProductId;
+        }
         this.onlyMembers = onlyMembers;
     }
 
     public DiscountOneForFree(int numberOfProducts, int numberOfProductsToPay, int affectedProductId) {
         this(numberOfProducts, numberOfProductsToPay, affectedProductId, false);
+    }
+
+    private static boolean isPositive(int numberToTest) {
+        return numberToTest >= 0;
     }
 
     @Override
@@ -46,20 +56,21 @@ public class DiscountOneForFree implements DiscountInterface {
 
     @Override
     public BigDecimal getDiscountSum(List<Product> productsFromReceipt) {
-        int temp = 0;
-        BigDecimal tempValue = new BigDecimal(0);
+        int counter = 0;
+        BigDecimal sumOfProductPrice = new BigDecimal(0);
         for (Product p : productsFromReceipt) {
             if (p.getId() == affectedProductId) {
-                temp++;
-                if (temp == numberOfProducts) {
-                    temp = 0;
-                    tempValue = tempValue.add(p.getPrice().multiply((new BigDecimal(numberOfProducts - numberOfProductsToPay))));
+                counter++;
+                if (counter == numberOfProducts) {
+                    counter = 0;
+                    sumOfProductPrice = sumOfProductPrice.add(p.getPrice().multiply((
+                            new BigDecimal(numberOfProducts - numberOfProductsToPay))));
 
                 }
             }
 
         }
-        return tempValue;
+        return sumOfProductPrice;
     }
 
     @Override
@@ -85,7 +96,7 @@ public class DiscountOneForFree implements DiscountInterface {
 
     @Override
     public String toString() {
-        return  DISCOUNT_ID +
+        return DISCOUNT_ID +
                 ", Number of products: " + numberOfProducts +
                 ", Number of products to pay: " + numberOfProductsToPay +
                 ", Affected Product Id: " + affectedProductId +
